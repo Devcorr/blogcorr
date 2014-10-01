@@ -1,8 +1,7 @@
 {
-  "name": "todomvc-flux",
-  "version": "0.0.2",
-  "description": "Example Flux architecture.",
-  "repository": "https://github.com/facebook/flux",
+  "name": "parse-blog",
+  "version": "0.0.1",
+  "description": "Parse powered blog platform",
   "main": "js/app.js",
   "dependencies": {
     "flux": "^2.0.0",
@@ -21,7 +20,7 @@
     "build": "NODE_ENV=production browserify . | uglifyjs -cm > js/bundle.min.js",
     "test": "jest"
   },
-  "author": "Bill Fisher",
+  "author": "Matt Bargar",
   "browserify": {
     "transform": [
       "reactify",
