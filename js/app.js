@@ -11,9 +11,9 @@
 
 var React = require('react');
 
-var TodoApp = require('./components/TodoApp.react');
+var BlogApp = require('./components/BlogApp.react');
 
 React.renderComponent(
-  <TodoApp />,
-  document.getElementById('todoapp')
+  <BlogApp />,
+  document.getElementById('blogapp')
 );
