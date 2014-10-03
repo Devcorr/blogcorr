@@ -2,6 +2,7 @@
   "name": "parse-blog",
   "version": "0.0.1",
   "description": "Parse powered blog platform",
+  "repository": "https://bitbucket.org/devcorr/parse-blog",
   "main": "js/app.js",
   "dependencies": {
     "flux": "^2.0.0",
@@ -10,6 +11,7 @@
   "devDependencies": {
     "browserify": "~4.2.2",
     "envify": "~2.0.1",
+    "gulp": "^3.8.8",
     "jest-cli": "~0.1.17",
     "reactify": "~0.14.0",
     "uglify-js": "~2.4.15",
