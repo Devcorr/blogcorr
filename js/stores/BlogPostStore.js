@@ -1,4 +1,5 @@
 var EventEmitter = require('events').EventEmitter;
+var AppDispatcher = require('../dispatcher/AppDispatcher');
 var merge = require('react/lib/merge');
 
 var CHANGE_EVENT = 'change';
@@ -46,6 +47,30 @@ var BlogPostStore = merge(EventEmitter.prototype, {
     removeChangeListener: function(callback) {
         this.removeListener(CHANGE_EVENT, callback);
     }
+});
+
+AppDispatcher.register(function(payload) {
+  var action = payload.action;
+
+  switch(action.actionType) {
+      case 'create':
+          text = action.text.trim();
+          title = action.title.trim();
+          if (text !== '' && title !== '') {
+              blogPostCollection.create({
+                  title: title,
+                  text: text
+              });
+          }
+          break;
+
+      default:
+          return true;
+  }
+
+  BlogPostStore.emitChange();
+
+  return true;
 });
 
 module.exports = BlogPostStore;

@@ -6,6 +6,7 @@ var Header = require('./Header.react');
 var React = require('react');
 var BlogPost = require('./BlogPost.react');
 var BlogPostStore = require('../stores/BlogPostStore');
+var CreatePostForm = require('./CreatePostForm.react');
 
 function getBlogState() {
     return {
@@ -29,12 +30,18 @@ var BlogApp = React.createClass({
 
     render: function() {
 
+        var allBlogPosts = this.state.allPosts;
+        var posts = [];
 
+        for (var i=0; i < allBlogPosts.length; i++) {
+          posts.push(<BlogPost post={allBlogPosts.at(i)} />);
+        }
 
         return (
             <div>
                 <Header />
-                <BlogPost post={this.state.allPosts.at(0)} />
+                <div>{posts}</div>
+                <CreatePostForm />
             </div>
         );
     },
