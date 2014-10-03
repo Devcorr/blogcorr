@@ -1,16 +1,23 @@
-
-
 var EventEmitter = require('events').EventEmitter;
 var merge = require('react/lib/merge');
 
+var CHANGE_EVENT = 'change';
+
 Parse.initialize("Xwe7s8Ug2BqooogeIZSq1XnwT4YApw72m6huvLpJ", "Fnz4uu0G5y8foFzX4WGgZHfMVJGUa83ywFUo3EiV");
 
-var BlogPost = Parse.Object.extend("Post");
+var BlogPost = Parse.Object.extend("BlogPost");
 var BlogPostCollection = Parse.Collection.extend({
     model: BlogPost
 });
 var blogPostCollection = new BlogPostCollection();
-var _blogPosts = {};
+blogPostCollection.fetch({
+    success: function() {
+        BlogPostStore.emitChange();
+    },
+    error: function () {
+        alert("Something went wrong with loading the posts");
+    }
+});
 
 var BlogPostStore = merge(EventEmitter.prototype, {
 
@@ -19,8 +26,26 @@ var BlogPostStore = merge(EventEmitter.prototype, {
      * @return {object}
      */
     getAll: function () {
-        return _blogPosts;
+        return blogPostCollection;
+    },
+
+    emitChange: function() {
+        this.emit(CHANGE_EVENT);
+    },
+
+    /**
+     * @param {function} callback
+     */
+    addChangeListener: function(callback) {
+        this.on(CHANGE_EVENT, callback);
+    },
+
+    /**
+     * @param {function} callback
+     */
+    removeChangeListener: function(callback) {
+        this.removeListener(CHANGE_EVENT, callback);
     }
 });
 
-module.exports = TodoStore;
+module.exports = BlogPostStore;
