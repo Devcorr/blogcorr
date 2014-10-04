@@ -7,9 +7,9 @@ var React = require('react');
 var BlogPost = React.createClass({
 
     render: function() {
-
         var post = this.props.post;
-        var createdAtDate = post.createdAt;
+        var dateElement = post.createdAt ?
+            <p className="date">{post.createdAt.toDateString()}</p> : "";
 
         if (post) {
             return (
@@ -17,7 +17,7 @@ var BlogPost = React.createClass({
                     <h1>
                         {post.get("title")}
                     </h1>
-                    <p className="date">{createdAtDate.toDateString()}</p>
+                    {dateElement}
                     <p>{post.get("text")}</p>
                 </article>
             );
