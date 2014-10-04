@@ -11,7 +11,8 @@ var Header = React.createClass({
    */
   render: function() {
     return (
-      <header id="header">
+      <header className="main" id="header">
+          <h1>Blogcorr</h1>
       </header>
     );
   }

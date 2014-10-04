@@ -204,6 +204,32 @@ button, input[type="submit"] {
   -moz-box-sizing: border-box;
   box-sizing: border-box; }
 
+header {
+  max-width: 68em;
+  margin-left: auto;
+  margin-right: auto; }
+  header:after {
+    content: "";
+    display: table;
+    clear: both; }
+
+section.container {
+  max-width: 68em;
+  margin-left: auto;
+  margin-right: auto; }
+  section.container:after {
+    content: "";
+    display: table;
+    clear: both; }
+  section.container article, section.container form {
+    float: left;
+    display: block;
+    margin-right: 2.35765%;
+    width: 57.35098%;
+    margin-left: 17.05961%; }
+    section.container article:last-child, section.container form:last-child {
+      margin-right: 0; }
+
 article.type-system-sans {
   text-align: left; }
   article.type-system-sans:after {

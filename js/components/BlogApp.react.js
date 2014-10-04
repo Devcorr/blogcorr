@@ -40,7 +40,7 @@ var BlogApp = React.createClass({
         return (
             <div>
                 <Header />
-                <div>{posts}</div>
+                <section className="container">{posts}</section>
                 <CreatePostForm />
             </div>
         );

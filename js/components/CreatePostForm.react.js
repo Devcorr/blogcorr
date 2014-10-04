@@ -8,11 +8,13 @@ var BlogPostActions = require('../actions/BlogPostActions');
 var CreatePostForm = React.createClass({
     render: function() {
         return (
-          <form onSubmit={this._save}>
-                <input ref="title" type="text"/>
-                <textarea ref="text"></textarea>
-                <input type="submit"/>
-            </form>
+            <section className="container">
+                <form onSubmit={this._save}>
+                    <input placeholder="Title" ref="title" type="text"/>
+                    <textarea placeholder="Content" ref="text"></textarea>
+                    <input type="submit"/>
+                </form>
+            </section>
         );
     },
 

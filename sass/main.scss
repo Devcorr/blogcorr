@@ -2,6 +2,20 @@
 @import "base/base";
 @import "neat";
 
+header {
+  @include outer-container;
+}
+
+section.container {
+  @include outer-container;
+
+  article, form {
+    @include span-columns(7);
+    @include shift(2);
+  }
+}
+
+
 article.type-system-sans {
   $sans-serif: 'PT Sans', sans-serif;
   $sans-serif-2: 'Titillium Web', sans-serif;
