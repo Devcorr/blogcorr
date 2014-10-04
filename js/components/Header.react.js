@@ -12,7 +12,6 @@ var Header = React.createClass({
   render: function() {
     return (
       <header id="header">
-        <h1>Posts</h1>
       </header>
     );
   }

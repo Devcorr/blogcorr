@@ -12,14 +12,13 @@ var BlogPost = React.createClass({
 
         if (post) {
             return (
-                <div>
-                    <div>
+                <article className="type-system-sans">
+                    <h1>
                         {post.get("title")}
-                    </div>
-                    <div>
-                        {post.get("text")}
-                    </div>
-                </div>
+                    </h1>
+                    <p className="date">{post.createdAt}</p>
+                    <p>{post.get("text")}</p>
+                </article>
             );
         } else {
             return (<div></div>);
