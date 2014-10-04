@@ -1,0 +1,10 @@
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
+
+a {
+  background: black;
+  background-color: red;
+  background-image: -webkit-linear-gradient(bottom, #ff0000, #ffa500);
+  background-image: linear-gradient(to top,#ff0000, #ffa500); }
