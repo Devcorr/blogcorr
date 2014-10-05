@@ -3,6 +3,7 @@
  */
 
 var React = require('react');
+var LoginForm = require('./LoginForm.react');
 
 var Header = React.createClass({
 
@@ -13,6 +14,7 @@ var Header = React.createClass({
     return (
       <header className="main" id="header">
           <h1>Blogcorr</h1>
+          <LoginForm />
       </header>
     );
   }

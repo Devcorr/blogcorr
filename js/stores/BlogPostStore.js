@@ -4,8 +4,6 @@ var merge = require('react/lib/merge');
 
 var CHANGE_EVENT = 'change';
 
-Parse.initialize("Xwe7s8Ug2BqooogeIZSq1XnwT4YApw72m6huvLpJ", "Fnz4uu0G5y8foFzX4WGgZHfMVJGUa83ywFUo3EiV");
-
 var BlogPost = Parse.Object.extend("BlogPost");
 var BlogPostCollection = Parse.Collection.extend({
     model: BlogPost
