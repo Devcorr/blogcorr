@@ -13,7 +13,7 @@ var Header = React.createClass({
   render: function() {
     return (
       <header className="main" id="header">
-          <h1 id="headerLogo">Blogcorr</h1>
+          <h1 id="headerLogo"><img src="images/logo.png" alt="Devcorr" /></h1>
           <LoginForm />
       </header>
     );
