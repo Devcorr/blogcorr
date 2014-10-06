@@ -40,6 +40,9 @@ AppDispatcher.register(function(payload) {
 
             if (username !== '' && password !== '') {
                 Parse.User.logIn(username, password, {
+                    success: function(user) {
+                        UserStore.emitChange();
+                    },
                     error: function(user, error) {
                         alert("something went wrong with the login");
                     }
@@ -47,11 +50,14 @@ AppDispatcher.register(function(payload) {
             }
             break;
 
+        case 'logout':
+            Parse.User.logOut();
+            UserStore.emitChange();
+            break;
+
         default:
             return true;
     }
-
-    UserStore.emitChange();
 
     return true;
 });

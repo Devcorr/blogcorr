@@ -7,6 +7,11 @@ var UserActions = {
             username: username,
             password: password
         });
+    },
+    logOut: function() {
+        AppDispatcher.handleViewAction({
+            actionType: "logout"
+        });
     }
 };
 

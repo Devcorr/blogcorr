@@ -63,12 +63,12 @@ var LoginForm = React.createClass({
     _onDataChange: function() {
         this.setState({
             user: UserStore.getCurrentUser(),
-            usernameInput: this.refs.username.getDOMNode().value,
-            passwordInput: this.refs.password.getDOMNode().value
+            usernameInput: '',
+            passwordInput: ''
         });
     },
 
-    _onViewChange: function () {
+    _onViewChange: function() {
         this.setState({
             user: this.state.user,
             usernameInput: this.refs.username.getDOMNode().value,
@@ -76,9 +76,14 @@ var LoginForm = React.createClass({
         });
     },
 
-    _logIn: function () {
+    _logIn: function() {
         event.preventDefault();
         UserActions.logIn(this.state.usernameInput, this.state.passwordInput);
+    },
+
+    _logOut: function() {
+        event.preventDefault();
+        UserActions.logOut();
     }
 
 });
