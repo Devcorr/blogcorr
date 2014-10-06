@@ -11,8 +11,8 @@ var BlogPost = React.createClass({
         return {
             isEditingTitle: false,
             isEditingText: false,
-            titleValue: '',
-            textValue: ''
+            titleValue: this.props.post.get("title"),
+            textValue: this.props.post.get("text")
         };
     },
 
@@ -29,18 +29,22 @@ var BlogPost = React.createClass({
                             onChange={this._onChangeTitle}
                             value={this.state.titleValue}
                             ref="titleEdit"
+                            autoFocus={true}
+                            value={this.state.titleValue}
                          />
         }
 
         if (this.state.isEditingText) {
-                textInput = <textarea
-                                className="textEdit"
-                                onBlur={this._onSaveText}
-                                onChange={this._onChangeText}
-                                value={this.state.textValue}
-                                ref="textEdit"
-                             >
-                             </textarea>
+            textInput = <textarea
+                            className="textEdit"
+                            onBlur={this._onSaveText}
+                            onChange={this._onChangeText}
+                            value={this.state.textValue}
+                            ref="textEdit"
+                            autoFocus={true}
+                            value={this.state.textValue}
+                         >
+                         </textarea>
         }
 
         if (post) {
