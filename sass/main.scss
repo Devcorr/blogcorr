@@ -9,11 +9,19 @@ header {
     @include span-columns(4);
   }
 
-  #loginForm {
+  #accountSection {
     @include span-columns(6);
     @include shift(2);
 
-    & > input {
+    #loggedInSection {
+      text-align: right;
+
+      #logOutButton {
+        margin-left:1em;
+      }
+    }
+
+    input {
       @include span-columns(2 of 6);
     }
   }

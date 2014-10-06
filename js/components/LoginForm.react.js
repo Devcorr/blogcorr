@@ -29,26 +29,33 @@ var LoginForm = React.createClass({
     render: function() {
 
         if (this.state.user) {
-            return (<span>Hi, {this.state.user.get('username')}</span>);
+            return (<div id="accountSection">
+                        <div id="loggedInSection">
+                            Hi, {this.state.user.get('username')}
+                            <button id="logOutButton" onClick={this._logOut}>Log Out</button>
+                        </div>
+                    </div>);
         } else {
             return (
-                <form id="loginForm" onSubmit={this._logIn}>
-                    <input
-                    type="text"
-                    placeholder="Username"
-                    onChange={this._onViewChange}
-                    ref="username"
-                    value={this.state.usernameInput}
-                    />
-                    <input
-                    type="text"
-                    placeholder="Password"
-                    onChange={this._onViewChange}
-                    ref="password"
-                    value={this.state.passwordInput}
-                    />
-                    <input type="submit" />
-                </form>
+                <div id="accountSection">
+                    <form id="loginForm" onSubmit={this._logIn}>
+                        <input
+                        type="text"
+                        placeholder="Username"
+                        onChange={this._onViewChange}
+                        ref="username"
+                        value={this.state.usernameInput}
+                        />
+                        <input
+                        type="text"
+                        placeholder="Password"
+                        onChange={this._onViewChange}
+                        ref="password"
+                        value={this.state.passwordInput}
+                        />
+                        <input value="Log In" type="submit" />
+                    </form>
+                </div>
             );
         }
     },

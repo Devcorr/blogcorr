@@ -219,20 +219,24 @@ header {
     width: 31.76157%; }
     header #headerLogo:last-child {
       margin-right: 0; }
-  header #loginForm {
+  header #accountSection {
     float: left;
     display: block;
     margin-right: 2.35765%;
     width: 48.82117%;
     margin-left: 17.05961%; }
-    header #loginForm:last-child {
+    header #accountSection:last-child {
       margin-right: 0; }
-    header #loginForm > input {
+    header #accountSection #loggedInSection {
+      text-align: right; }
+      header #accountSection #loggedInSection #logOutButton {
+        margin-left: 1em; }
+    header #accountSection input {
       float: left;
       display: block;
       margin-right: 4.82916%;
       width: 30.11389%; }
-      header #loginForm > input:last-child {
+      header #accountSection input:last-child {
         margin-right: 0; }
 
 section.container {
