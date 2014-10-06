@@ -1,6 +1,7 @@
 var EventEmitter = require('events').EventEmitter;
 var AppDispatcher = require('../dispatcher/AppDispatcher');
 var merge = require('react/lib/merge');
+var Parse = require('../util/Parse');
 
 var CHANGE_EVENT = 'change';
 
