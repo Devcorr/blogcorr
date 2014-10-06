@@ -4,6 +4,19 @@
 
 header {
   @include outer-container;
+
+  #headerLogo {
+    @include span-columns(4);
+  }
+
+  #loginForm {
+    @include span-columns(6);
+    @include shift(2);
+
+    & > input {
+      @include span-columns(2 of 6);
+    }
+  }
 }
 
 section.container {

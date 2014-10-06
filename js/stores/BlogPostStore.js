@@ -53,8 +53,8 @@ AppDispatcher.register(function(payload) {
 
   switch(action.actionType) {
       case 'create':
-          text = action.text.trim();
-          title = action.title.trim();
+          var text = action.text.trim();
+          var title = action.title.trim();
           if (text !== '' && title !== '') {
               blogPostCollection.create({
                   title: title,

@@ -1,13 +1,14 @@
 var EventEmitter = require('events').EventEmitter;
 var AppDispatcher = require('../dispatcher/AppDispatcher');
 var merge = require('react/lib/merge');
+var Parse = require('../util/Parse');
 
 var CHANGE_EVENT = 'change';
 
 var UserStore = merge(EventEmitter.prototype, {
 
     getCurrentUser: function() {
-
+        return Parse.User.current();
     },
 
     emitChange: function() {
@@ -34,14 +35,23 @@ AppDispatcher.register(function(payload) {
 
     switch(action.actionType) {
         case 'login':
+            var username = action.username.trim();
+            var password = action.password.trim();
 
+            if (username !== '' && password !== '') {
+                Parse.User.logIn(username, password, {
+                    error: function(user, error) {
+                        alert("something went wrong with the login");
+                    }
+                });
+            }
             break;
 
         default:
             return true;
     }
 
-    BlogPostStore.emitChange();
+    UserStore.emitChange();
 
     return true;
 });
