@@ -5,6 +5,8 @@
 var React = require('react');
 var BlogPostActions = require("../actions/BlogPostActions");
 
+var cx = require('react/lib/cx');
+
 var BlogPost = React.createClass({
 
     getInitialState: function() {
@@ -50,12 +52,19 @@ var BlogPost = React.createClass({
         if (post) {
             return (
                 <article className="type-system-sans">
-                    <h1 onDoubleClick={this._onTitleDoubleClick}>
+                    <h1 className={cx({
+                        'editing': this.state.isEditingTitle
+                    })}
+                    onDoubleClick={this._onTitleDoubleClick}>
                         {post.get("title")}
                     </h1>
                     {titleInput}
                     {dateElement}
-                    <p onDoubleClick={this._onTextDoubleClick}>{post.get("text")}</p>
+                    <p className={cx({
+                        'editing': this.state.isEditingText
+                    })}
+                       onDoubleClick={this._onTextDoubleClick}>{post.get("text")}
+                    </p>
                     {textInput}
                 </article>
             );
@@ -83,7 +92,6 @@ var BlogPost = React.createClass({
 
         this.setState({
             isEditingTitle: false,
-            titleValue: ''
         });
     },
 
@@ -94,7 +102,6 @@ var BlogPost = React.createClass({
 
         this.setState({
             isEditingText: false,
-            textValue: ''
         });
     },
 
