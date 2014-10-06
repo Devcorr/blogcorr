@@ -3,28 +3,109 @@
  */
 
 var React = require('react');
+var BlogPostActions = require("../actions/BlogPostActions");
 
 var BlogPost = React.createClass({
+
+    getInitialState: function() {
+        return {
+            isEditingTitle: false,
+            isEditingText: false,
+            titleValue: '',
+            textValue: ''
+        };
+    },
 
     render: function() {
         var post = this.props.post;
         var dateElement = post.createdAt ?
             <p className="date">{post.createdAt.toDateString()}</p> : "";
+        var titleInput, textInput;
+
+        if (this.state.isEditingTitle) {
+            titleInput = <input
+                            className="titleEdit"
+                            onBlur={this._onSaveTitle}
+                            onChange={this._onChangeTitle}
+                            value={this.state.titleValue}
+                            ref="titleEdit"
+                         />
+        }
+
+        if (this.state.isEditingText) {
+                textInput = <textarea
+                                className="textEdit"
+                                onBlur={this._onSaveText}
+                                onChange={this._onChangeText}
+                                value={this.state.textValue}
+                                ref="textEdit"
+                             >
+                             </textarea>
+        }
 
         if (post) {
             return (
                 <article className="type-system-sans">
-                    <h1>
+                    <h1 onDoubleClick={this._onTitleDoubleClick}>
                         {post.get("title")}
                     </h1>
+                    {titleInput}
                     {dateElement}
-                    <p>{post.get("text")}</p>
+                    <p onDoubleClick={this._onTextDoubleClick}>{post.get("text")}</p>
+                    {textInput}
                 </article>
             );
         } else {
             return (<div></div>);
         }
+    },
+
+    _onChangeTitle: function() {
+        this.setState({
+            titleValue: this.refs.titleEdit.getDOMNode().value
+        });
+    },
+
+    _onChangeText: function() {
+        this.setState({
+            textValue: this.refs.textEdit.getDOMNode().value
+        });
+    },
+
+    _onSaveTitle: function() {
+        BlogPostActions.update(this.props.post, {
+                title: this.state.titleValue
+        });
+
+        this.setState({
+            isEditingTitle: false,
+            titleValue: ''
+        });
+    },
+
+    _onSaveText: function() {
+        BlogPostActions.update(this.props.post, {
+            text: this.state.textValue
+        });
+
+        this.setState({
+            isEditingText: false,
+            textValue: ''
+        });
+    },
+
+    _onTitleDoubleClick: function() {
+        this.setState({
+            isEditingTitle: true
+        });
+    },
+
+    _onTextDoubleClick: function () {
+        this.setState({
+            isEditingText: true
+        });
     }
+
 });
 
 module.exports = BlogPost;

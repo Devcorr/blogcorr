@@ -61,13 +61,26 @@ AppDispatcher.register(function(payload) {
                   text: text
               });
           }
+          BlogPostStore.emitChange();
+          break;
+
+      case 'update':
+          var post = action.post;
+          var updates = action.updates;
+
+          post.save(updates, {
+              success: function(post) {
+                  BlogPostStore.emitChange();
+              },
+              error: function(post, error) {
+                  alert("Something bad happened while updating the post");
+              }
+          });
           break;
 
       default:
           return true;
   }
-
-  BlogPostStore.emitChange();
 
   return true;
 });

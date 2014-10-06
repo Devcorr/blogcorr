@@ -7,6 +7,14 @@ var BlogPostActions = {
             title: title,
             text: text
         });
+    },
+
+    update: function(post, updates) {
+        AppDispatcher.handleViewAction({
+            actionType: "update",
+            post: post,
+            updates: updates
+        });
     }
 };
 
