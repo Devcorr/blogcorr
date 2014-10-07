@@ -10,7 +10,6 @@ var LoginForm = React.createClass({
 
     getInitialState: function() {
         return {
-            user: UserStore.getCurrentUser(),
             usernameInput: "",
             passwordInput: ""
         }
@@ -28,10 +27,12 @@ var LoginForm = React.createClass({
      */
     render: function() {
 
-        if (this.state.user) {
+        var user = UserStore.getCurrentUser();
+
+        if (user) {
             return (<div id="accountSection">
                         <div id="loggedInSection">
-                            Hi, {this.state.user.get('username')}
+                            Hi, {user.get('username')}
                             <button id="logOutButton" onClick={this._logOut}>Log Out</button>
                         </div>
                     </div>);
@@ -62,7 +63,6 @@ var LoginForm = React.createClass({
 
     _onDataChange: function() {
         this.setState({
-            user: UserStore.getCurrentUser(),
             usernameInput: '',
             passwordInput: ''
         });
@@ -70,19 +70,18 @@ var LoginForm = React.createClass({
 
     _onViewChange: function() {
         this.setState({
-            user: this.state.user,
             usernameInput: this.refs.username.getDOMNode().value,
             passwordInput: this.refs.password.getDOMNode().value
         });
     },
 
-    _logIn: function() {
-        event.preventDefault();
+    _logIn: function(e) {
+        e.preventDefault();
         UserActions.logIn(this.state.usernameInput, this.state.passwordInput);
     },
 
-    _logOut: function() {
-        event.preventDefault();
+    _logOut: function(e) {
+        e.preventDefault();
         UserActions.logOut();
     }
 

@@ -2,8 +2,8 @@ Todos
 ==========
 
 * Finish styling post edit inputs
-* Add ability to delete posts
-* Make editing and adding posts an admin only action
+* Hide post CRUD UI elements when user doesn't have the "Author" role
 * Add icon font
 * Add markdown support (use showdown.js?)
+* Integrate CodeMirror for displaying code samples and/or editing posts?
 * Create signup page?
