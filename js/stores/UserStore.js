@@ -2,13 +2,35 @@ var EventEmitter = require('events').EventEmitter;
 var AppDispatcher = require('../dispatcher/AppDispatcher');
 var merge = require('react/lib/merge');
 var Parse = require('../util/Parse');
+var _ = require('underscore');
 
 var CHANGE_EVENT = 'change';
+
+var currentUserRoles;
+var loadCurrentUserRoles = function() {
+    var query = new Parse.Query(Parse.Role);
+    query.equalTo("users", Parse.User.current());
+    query.find({
+        success: function (results) {
+            currentUserRoles = _.map(results, function (role) {
+                return role.get("name");
+            });
+            UserStore.emitChange();
+        },
+        error: function (error) {
+            alert("Error: " + error.code + " " + error.message);
+        }
+    });
+};
 
 var UserStore = merge(EventEmitter.prototype, {
 
     getCurrentUser: function() {
         return Parse.User.current();
+    },
+
+    currentUserHasRole: function(roleName) {
+        return _.contains(currentUserRoles, roleName);
     },
 
     emitChange: function() {
@@ -41,10 +63,10 @@ AppDispatcher.register(function(payload) {
             if (username !== '' && password !== '') {
                 Parse.User.logIn(username, password, {
                     success: function(user) {
-                        UserStore.emitChange();
+                        loadCurrentUserRoles();
                     },
                     error: function(user, error) {
-                        alert("something went wrong with the login");
+                        alert("Error: " + error.code + " " + error.message);
                     }
                 });
             }
@@ -52,6 +74,7 @@ AppDispatcher.register(function(payload) {
 
         case 'logout':
             Parse.User.logOut();
+            currentUserRoles = undefined;
             UserStore.emitChange();
             break;
 
@@ -61,5 +84,9 @@ AppDispatcher.register(function(payload) {
 
     return true;
 });
+
+if (UserStore.getCurrentUser()) {
+    loadCurrentUserRoles();
+}
 
 module.exports = UserStore;

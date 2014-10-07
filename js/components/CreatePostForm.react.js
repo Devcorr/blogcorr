@@ -4,6 +4,7 @@
 
 var React = require('react');
 var BlogPostActions = require('../actions/BlogPostActions');
+var UserStore = require('../stores/UserStore');
 
 var CreatePostForm = React.createClass({
 
@@ -15,26 +16,35 @@ var CreatePostForm = React.createClass({
     },
 
     render: function() {
-        return (
-            <section className="container">
-                <form onSubmit={this._save}>
-                    <input
+
+        var user = UserStore.getCurrentUser(),
+            userIsAuthor = UserStore.currentUserHasRole("Author");
+
+        if (user && userIsAuthor) {
+            return (
+                <section className="container">
+                    <form onSubmit={this._save}>
+                        <input
                         placeholder="Title"
                         ref="title"
                         type="text"
                         value={this.state.titleValue}
                         onChange={this._onChange}
-                    />
-                    <textarea
+                        />
+                        <textarea
                         placeholder="Content"
                         ref="text"
                         value={this.state.textValue}
                         onChange={this._onChange}>
-                    </textarea>
-                    <input type="submit"/>
-                </form>
-            </section>
-        );
+                        </textarea>
+                        <input type="submit"/>
+                    </form>
+                </section>
+            );
+        } else {
+            return false;
+        }
+
     },
 
     _save: function(event) {
