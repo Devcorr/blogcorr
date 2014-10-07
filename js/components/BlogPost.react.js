@@ -66,6 +66,7 @@ var BlogPost = React.createClass({
                        onDoubleClick={this._onTextDoubleClick}>{post.get("text")}
                     </p>
                     {textInput}
+                    <p className="deletePost"><a href="#" onClick={this._deletePost}>Delete</a></p>
                 </article>
             );
         } else {
@@ -115,6 +116,11 @@ var BlogPost = React.createClass({
         this.setState({
             isEditingText: true
         });
+    },
+
+    _deletePost: function(e) {
+        e.preventDefault();
+        BlogPostActions.delete(this.props.post)
     }
 
 });

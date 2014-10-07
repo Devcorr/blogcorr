@@ -78,6 +78,19 @@ AppDispatcher.register(function(payload) {
           });
           break;
 
+      case 'delete':
+          var post = action.post;
+
+          post.destroy({
+              success: function() {
+                  BlogPostStore.emitChange();
+              },
+              error: function() {
+                  alert("Something went wrong while deleting the post");
+              }
+          })
+          break;
+
       default:
           return true;
   }

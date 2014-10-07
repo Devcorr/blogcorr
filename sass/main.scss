@@ -157,4 +157,12 @@ article.type-system-sans {
   p.editing, h1.editing {
     display: none;
   }
+
+  p.deletePost{
+    color: transparentize($base-font-color, .6);
+    font-family: $sans-serif;
+    font-size: .8em;
+    margin-bottom: 1em;
+    text-align:right;
+  }
 }

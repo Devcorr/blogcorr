@@ -15,6 +15,13 @@ var BlogPostActions = {
             post: post,
             updates: updates
         });
+    },
+
+    delete: function(post) {
+        AppDispatcher.handleViewAction({
+            actionType: "delete",
+            post: post
+        });
     }
 };
 
