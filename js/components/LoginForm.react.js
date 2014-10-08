@@ -48,7 +48,7 @@ var LoginForm = React.createClass({
                         value={this.state.usernameInput}
                         />
                         <input
-                        type="text"
+                        type="password"
                         placeholder="Password"
                         onChange={this._onViewChange}
                         ref="password"
