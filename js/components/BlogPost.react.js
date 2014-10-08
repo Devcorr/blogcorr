@@ -4,6 +4,7 @@
 
 var React = require('react');
 var BlogPostActions = require("../actions/BlogPostActions");
+var UserStore = require("../stores/UserStore");
 
 var cx = require('react/lib/cx');
 
@@ -22,7 +23,7 @@ var BlogPost = React.createClass({
         var post = this.props.post;
         var dateElement = post.createdAt ?
             <p className="date">{post.createdAt.toDateString()}</p> : "";
-        var titleInput, textInput;
+        var titleInput, textInput, deleteButton;
 
         if (this.state.isEditingTitle) {
             titleInput = <input
@@ -49,6 +50,12 @@ var BlogPost = React.createClass({
                          </textarea>
         }
 
+        if (UserStore.currentUserHasRole("Author")) {
+            deleteButton = <p className="deletePost">
+                               <a href="#" onClick={this._deletePost}>Delete</a>
+                           </p>
+        }
+
         if (post) {
             return (
                 <article className="type-system-sans">
@@ -66,7 +73,7 @@ var BlogPost = React.createClass({
                        onDoubleClick={this._onTextDoubleClick}>{post.get("text")}
                     </p>
                     {textInput}
-                    <p className="deletePost"><a href="#" onClick={this._deletePost}>Delete</a></p>
+                    {deleteButton}
                 </article>
             );
         } else {
