@@ -114,15 +114,19 @@ var BlogPost = React.createClass({
     },
 
     _onTitleDoubleClick: function() {
-        this.setState({
-            isEditingTitle: true
-        });
+        if (UserStore.currentUserHasRole("Author")) {
+            this.setState({
+                isEditingTitle: true
+            });
+        }
     },
 
     _onTextDoubleClick: function () {
-        this.setState({
-            isEditingText: true
-        });
+        if (UserStore.currentUserHasRole("Author")) {
+            this.setState({
+                isEditingText: true
+            });
+        }
     },
 
     _deletePost: function(e) {
