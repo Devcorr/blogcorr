@@ -1,6 +1,7 @@
 Todos
 ==========
 
+* Add URLs (use https://github.com/rackt/react-router ?). Impacts SEO item below 
 * Finish styling post edit inputs
 * Hide post CRUD UI elements when user doesn't have the "Author" role
     Create form done, just need to hide delete link and prevent double click editing.
