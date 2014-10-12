@@ -1,3 +1,3 @@
-Parse.initialize("Xwe7s8Ug2BqooogeIZSq1XnwT4YApw72m6huvLpJ", "Fnz4uu0G5y8foFzX4WGgZHfMVJGUa83ywFUo3EiV");
+Parse.initialize("xyb2UtvU6eps2bP0YD6ZxjhOQqga6zCRps0BPWTa", "RurMc9VlNv7LwVg8dS4hQ7OIuZfZAf8vuM0ecpjQ");
 
 module.exports = Parse;
