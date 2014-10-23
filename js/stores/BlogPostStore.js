@@ -29,6 +29,10 @@ var BlogPostStore = merge(EventEmitter.prototype, {
         return blogPostCollection;
     },
 
+    getPost: function (postId) {
+        return blogPostCollection.get(postId);
+    },
+
     emitChange: function() {
         this.emit(CHANGE_EVENT);
     },

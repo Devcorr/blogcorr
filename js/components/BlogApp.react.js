@@ -34,6 +34,7 @@ var BlogApp = React.createClass({
 var routes = (
     <Routes location="history">
         <Route name="blogapp" path="/blogcorr/" handler={BlogApp}>
+            <Route name="posts" path="posts/:postId" handler={BlogPost}/>
             <DefaultRoute handler={BlogPostList}/>
         </Route>
     </Routes>

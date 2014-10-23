@@ -3,27 +3,44 @@
  */
 
 var React = require('react');
+var Router = require('react-router');
+var Link = Router.Link;
+
 var BlogPostActions = require("../actions/BlogPostActions");
 var UserStore = require("../stores/UserStore");
+var BlogPostStore = require("../stores/BlogPostStore");
 
 var cx = require('react/lib/cx');
 
 var BlogPost = React.createClass({
 
+    getPost: function() {
+        if (this.props.post) {
+            post = this.props.post;
+        } else if (this.props.params.postId) {
+            post = BlogPostStore.getPost(this.props.params.postId);
+        } else {
+            post = null;
+            // Implement 404
+        }
+        return post;
+    },
+
     getInitialState: function() {
+        var post = this.getPost();
+
         return {
             isEditingTitle: false,
             isEditingText: false,
-            titleValue: this.props.post.get("title"),
-            textValue: this.props.post.get("text")
+            titleValue: post.get("title"),
+            textValue: post.get("text")
         };
     },
 
     render: function() {
-        var post = this.props.post;
-        var dateElement = post.createdAt ?
-            <p className="date">{post.createdAt.toDateString()}</p> : "";
         var titleInput, textInput, deleteButton;
+        var post = this.getPost();
+        var dateElement = post.createdAt ? <p className="date">{post.createdAt.toDateString()}</p> : "";
 
         if (this.state.isEditingTitle) {
             titleInput = <input
@@ -73,6 +90,7 @@ var BlogPost = React.createClass({
                        onDoubleClick={this._onTextDoubleClick}>{post.get("text")}
                     </p>
                     {textInput}
+                    <Link to="posts" params={{postId: post.id}}>Read More</Link>
                     {deleteButton}
                 </article>
             );
@@ -99,7 +117,7 @@ var BlogPost = React.createClass({
         });
 
         this.setState({
-            isEditingTitle: false,
+            isEditingTitle: false
         });
     },
 
@@ -109,7 +127,7 @@ var BlogPost = React.createClass({
         });
 
         this.setState({
-            isEditingText: false,
+            isEditingText: false
         });
     },
 
