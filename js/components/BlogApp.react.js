@@ -2,12 +2,12 @@
  * @jsx React.DOM
  */
 
-var Header = require('./Header.react');
 var React = require('react');
 var BlogPost = require('./BlogPost.react');
 var BlogPostStore = require('../stores/BlogPostStore');
 var CreatePostForm = require('./CreatePostForm.react');
 var UserStore = require('../stores/UserStore');
+var LoginForm = require('./LoginForm.react');
 
 function getBlogState() {
     return {
@@ -43,7 +43,13 @@ var BlogApp = React.createClass({
 
         return (
             <div>
-                <Header />
+                <header className="main" id="header">
+                    <h1 id="headerLogo"><img src="images/logo.png" alt="Devcorr" /></h1>
+                    <LoginForm />
+                </header>
+
+                <this.props.activeRouteHandler/>
+
                 <section className="container">{posts}</section>
                 <CreatePostForm />
             </div>
@@ -58,5 +64,12 @@ var BlogApp = React.createClass({
     }
 
 });
+
+var routes = (
+    <Routes location="history">
+        <Route name="blogapp" path"/" handler={BlogApp}>
+            <DefaultRoute handler={}
+    </Routes>
+    )
 
 module.exports = BlogApp;

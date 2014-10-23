@@ -1,0 +1,4 @@
+
+var BlogPostApp = React.createClass({
+
+})
