@@ -3,44 +3,20 @@
  */
 
 var React = require('react');
-var BlogPost = require('./BlogPost.react');
-var BlogPostStore = require('../stores/BlogPostStore');
-var CreatePostForm = require('./CreatePostForm.react');
-var UserStore = require('../stores/UserStore');
-var LoginForm = require('./LoginForm.react');
+var Router = require('react-router');
+var Route = Router.Route;
+var Routes = Router.Routes;
+var NotFoundRoute = Router.NotFoundRoute;
+var DefaultRoute = Router.DefaultRoute;
+var Link = Router.Link;
 
-function getBlogState() {
-    return {
-        allPosts: BlogPostStore.getAll(),
-        user: UserStore.getCurrentUser()
-    }
-}
+var BlogPost = require('./BlogPost.react');
+var LoginForm = require('./LoginForm.react');
+var BlogPostList = require('./BlogPostList.react');
 
 var BlogApp = React.createClass({
 
-    getInitialState: function() {
-        return getBlogState();
-    },
-
-    componentDidMount: function() {
-        BlogPostStore.addChangeListener(this._onChange);
-        UserStore.addChangeListener(this._onChange);
-    },
-
-    componentWillUnmount: function() {
-        BlogPostStore.removeChangeListener(this._onChange);
-        UserStore.removeChangeListener(this._onChange);
-    },
-
     render: function() {
-
-        var allBlogPosts = this.state.allPosts;
-        var posts = [];
-
-        for (var i=0; i < allBlogPosts.length; i++) {
-          posts.push(<BlogPost post={allBlogPosts.at(i)} />);
-        }
-
         return (
             <div>
                 <header className="main" id="header">
@@ -49,27 +25,18 @@ var BlogApp = React.createClass({
                 </header>
 
                 <this.props.activeRouteHandler/>
-
-                <section className="container">{posts}</section>
-                <CreatePostForm />
             </div>
         );
-    },
-
-    /**
-     * Event handler for 'change' events coming from the TodoStore
-     */
-    _onChange: function() {
-        this.setState(getBlogState());
     }
 
 });
 
 var routes = (
     <Routes location="history">
-        <Route name="blogapp" path"/" handler={BlogApp}>
-            <DefaultRoute handler={}
+        <Route name="blogapp" path="/blogcorr/" handler={BlogApp}>
+            <DefaultRoute handler={BlogPostList}/>
+        </Route>
     </Routes>
-    )
+);
 
-module.exports = BlogApp;
+module.exports = routes;

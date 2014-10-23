@@ -10,9 +10,9 @@
  */
 
 var React = require('react');
-var BlogApp = require('./components/BlogApp.react');
+var routes = require('./components/BlogApp.react');
 
 React.renderComponent(
-    <BlogApp />,
+    routes,
     document.getElementById('blogapp')
 );
