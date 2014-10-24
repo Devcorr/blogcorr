@@ -63,9 +63,16 @@ AppDispatcher.register(function(payload) {
               blogPostCollection.create({
                   title: title,
                   text: text
+              }, {
+                  wait: true,
+                  success: function(post) {
+                      BlogPostStore.emitChange();
+                  },
+                  error: function(post, error) {
+                      alert("Something bad happened while creating the post");
+                  }
               });
           }
-          BlogPostStore.emitChange();
           break;
 
       case 'update':
