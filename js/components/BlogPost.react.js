@@ -32,48 +32,57 @@ var BlogPost = React.createClass({
         return {
             isEditingTitle: false,
             isEditingText: false,
-            titleValue: post.get("title"),
-            textValue: post.get("text")
+            titleValue: post ? post.get("title") : "",
+            textValue: post ? post.get("text") : ""
         };
     },
 
+    componentDidMount: function() {
+        BlogPostStore.addChangeListener(this._onChangePost);
+    },
+
+    componentWillUnmount: function() {
+        BlogPostStore.removeChangeListener(this._onChangePost);
+    },
+
     render: function() {
-        var titleInput, textInput, deleteButton;
+        var dateElement, titleInput, textInput, deleteButton;
         var post = this.getPost();
-        var dateElement = post.createdAt ? <p className="date">{post.createdAt.toDateString()}</p> : "";
-
-        if (this.state.isEditingTitle) {
-            titleInput = <input
-                            className="titleEdit"
-                            onBlur={this._onSaveTitle}
-                            onChange={this._onChangeTitle}
-                            value={this.state.titleValue}
-                            ref="titleEdit"
-                            autoFocus={true}
-                            value={this.state.titleValue}
-                         />
-        }
-
-        if (this.state.isEditingText) {
-            textInput = <textarea
-                            className="textEdit"
-                            onBlur={this._onSaveText}
-                            onChange={this._onChangeText}
-                            value={this.state.textValue}
-                            ref="textEdit"
-                            autoFocus={true}
-                            value={this.state.textValue}
-                         >
-                         </textarea>
-        }
-
-        if (UserStore.currentUserHasRole("Author")) {
-            deleteButton = <p className="deletePost">
-                               <a href="#" onClick={this._deletePost}>Delete</a>
-                           </p>
-        }
 
         if (post) {
+            dateElement = post.createdAt ? <p className="date">{post.createdAt.toDateString()}</p> : "";
+
+            if (this.state.isEditingTitle) {
+                titleInput = <input
+                                className="titleEdit"
+                                onBlur={this._onSaveTitle}
+                                onChange={this._onChangeTitle}
+                                value={this.state.titleValue}
+                                ref="titleEdit"
+                                autoFocus={true}
+                                value={this.state.titleValue}
+                             />
+            }
+
+            if (this.state.isEditingText) {
+                textInput = <textarea
+                                className="textEdit"
+                                onBlur={this._onSaveText}
+                                onChange={this._onChangeText}
+                                value={this.state.textValue}
+                                ref="textEdit"
+                                autoFocus={true}
+                                value={this.state.textValue}
+                             >
+                             </textarea>
+            }
+
+            if (UserStore.currentUserHasRole("Author")) {
+                deleteButton = <p className="deletePost">
+                                   <a href="#" onClick={this._deletePost}>Delete</a>
+                               </p>
+            }
+
             return (
                 <article className="type-system-sans">
                     <h1 className={cx({
@@ -113,7 +122,7 @@ var BlogPost = React.createClass({
 
     _onSaveTitle: function() {
         BlogPostActions.update(this.props.post, {
-                title: this.state.titleValue
+            title: this.state.titleValue
         });
 
         this.setState({
@@ -150,6 +159,14 @@ var BlogPost = React.createClass({
     _deletePost: function(e) {
         e.preventDefault();
         BlogPostActions.delete(this.props.post)
+    },
+
+    _onChangePost: function() {
+        var post = this.getPost();
+        this.setState({
+            titleValue: post.get("title"),
+            textValue: post.get("text")
+        });
     }
 
 });

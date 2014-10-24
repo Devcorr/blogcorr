@@ -62,5 +62,7 @@ gulp.task('default', ['sass'], function() {
 
 gulp.task('webserver', function() {
     gulp.src('./')
-        .pipe(webserver());
+        .pipe(webserver({
+            fallback: 'index.html'
+        }));
 });
