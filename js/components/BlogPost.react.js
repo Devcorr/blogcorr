@@ -121,7 +121,7 @@ var BlogPost = React.createClass({
     },
 
     _onSaveTitle: function() {
-        BlogPostActions.update(this.props.post, {
+        BlogPostActions.update(this.getPost(), {
             title: this.state.titleValue
         });
 
@@ -131,7 +131,7 @@ var BlogPost = React.createClass({
     },
 
     _onSaveText: function() {
-        BlogPostActions.update(this.props.post, {
+        BlogPostActions.update(this.getPost(), {
             text: this.state.textValue
         });
 
@@ -158,7 +158,7 @@ var BlogPost = React.createClass({
 
     _deletePost: function(e) {
         e.preventDefault();
-        BlogPostActions.delete(this.props.post)
+        BlogPostActions.delete(this.getPost());
     },
 
     _onChangePost: function() {
