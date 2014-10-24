@@ -13,8 +13,23 @@ var Link = Router.Link;
 var BlogPost = require('./BlogPost.react');
 var LoginForm = require('./LoginForm.react');
 var BlogPostList = require('./BlogPostList.react');
+var UserStore = require('../stores/UserStore');
 
 var BlogApp = React.createClass({
+
+    getInitialState: function() {
+        return {
+            user: UserStore.getCurrentUser()
+        }
+    },
+
+    componentDidMount: function() {
+        UserStore.addChangeListener(this._onChange);
+    },
+
+    componentWillUnmount: function() {
+        UserStore.removeChangeListener(this._onChange);
+    },
 
     render: function() {
         return (
@@ -29,6 +44,12 @@ var BlogApp = React.createClass({
                 </section>
             </div>
         );
+    },
+
+    _onChange: function() {
+        this.setState({
+            user: UserStore.getCurrentUser()
+        });
     }
 
 });

@@ -4,14 +4,12 @@
 
 var React = require('react');
 var BlogPostStore = require('../stores/BlogPostStore');
-var UserStore = require('../stores/UserStore');
 var CreatePostForm = require('./CreatePostForm.react');
 var BlogPost = require('./BlogPost.react');
 
 function getBlogState() {
     return {
-        allPosts: BlogPostStore.getAll(),
-        user: UserStore.getCurrentUser()
+        allPosts: BlogPostStore.getAll()
     }
 }
 
@@ -23,12 +21,10 @@ var BlogPostList = React.createClass({
 
     componentDidMount: function() {
         BlogPostStore.addChangeListener(this._onChange);
-        UserStore.addChangeListener(this._onChange);
     },
 
     componentWillUnmount: function() {
         BlogPostStore.removeChangeListener(this._onChange);
-        UserStore.removeChangeListener(this._onChange);
     },
 
 
