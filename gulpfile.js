@@ -6,6 +6,7 @@ var reactify = require('reactify');
 var watchify = require('watchify');
 var notify = require("gulp-notify");
 var sass = require("gulp-sass");
+var webserver = require('gulp-webserver');
 
 var scriptsDir = './js';
 var buildDir = './js';
@@ -50,7 +51,7 @@ gulp.task('sass', function() {
         .pipe(gulp.dest('./css'));
 });
 
-gulp.task('watch', function() {
+gulp.task('watch', ['webserver'], function() {
     gulp.watch('./sass/*.scss', ['sass']);
     return buildScript('app.js', true);
 });
@@ -59,3 +60,7 @@ gulp.task('default', ['sass'], function() {
     return buildScript('app.js', false);
 });
 
+gulp.task('webserver', function() {
+    gulp.src('./')
+        .pipe(webserver());
+});
