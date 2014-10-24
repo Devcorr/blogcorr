@@ -24,7 +24,9 @@ var BlogApp = React.createClass({
                     <LoginForm />
                 </header>
 
-                <this.props.activeRouteHandler/>
+                <section className="container">
+                    <this.props.activeRouteHandler/>
+                </section>
             </div>
         );
     }

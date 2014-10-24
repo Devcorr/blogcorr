@@ -43,7 +43,7 @@ var BlogPostList = React.createClass({
 
         return (
             <div>
-                <section className="container">{posts}</section>
+                {posts}
                 <CreatePostForm />
             </div>
             );
