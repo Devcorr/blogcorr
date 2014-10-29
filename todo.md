@@ -1,12 +1,16 @@
 Questions for Next Time
 =========================
 
+* How does the static file hosting and Express integration work with Parse cloud code?
+* Will using Parse for hosting static files and redirecting to prerender make things difficult to debug? Can we still
+  make our dev environments look similar to prod? How will automated builds, testing and deployment work?
 * What's our MVP set of features? When will we make this platform live?
 
 Todos
 ==========
 
-* Try to integrate Parse cloud code with Prerender.io
+* Read though the Parse hosting docs: https://parse.com/docs/hosting_guide#hosting
+* Try to integrate Parse cloud code with Prerender.io: https://github.com/mikepugh/prerender-parse
 * Add markdown support (use showdown.js?)
 * Add icon font
 * Integrate CodeMirror for displaying code samples and/or editing posts?
