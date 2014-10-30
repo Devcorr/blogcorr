@@ -9,7 +9,7 @@ var sass = require("gulp-sass");
 var webserver = require('gulp-webserver');
 
 var scriptsDir = './js';
-var buildDir = './js';
+var buildDir = './public/js';
 
 
 function handleErrors() {
@@ -48,7 +48,7 @@ gulp.task('sass', function() {
         .pipe(sass({
             includePaths: require('node-neat').includePaths
         }))
-        .pipe(gulp.dest('./css'));
+        .pipe(gulp.dest('./public/css'));
 });
 
 gulp.task('watch', ['webserver'], function() {
@@ -61,8 +61,8 @@ gulp.task('default', ['sass'], function() {
 });
 
 gulp.task('webserver', function() {
-    gulp.src('./')
+    gulp.src('./public')
         .pipe(webserver({
-            fallback: 'index.html'
+            fallback: './public/index.html'
         }));
 });

@@ -4,6 +4,7 @@ Questions for Next Time
 * How does the static file hosting and Express integration work with Parse cloud code?
 * Will using Parse for hosting static files and redirecting to prerender make things difficult to debug? Can we still
   make our dev environments look similar to prod? How will automated builds, testing and deployment work?
+* Is there a risk of prerender caching user specific data? Security concerns?
 * What's our MVP set of features? When will we make this platform live?
 
 Todos

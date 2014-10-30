@@ -18,3 +18,4 @@ chromedriver.log
 /classes
 vagrant_ansible_inventory_default
 .gradletasknamecache
+global.json
