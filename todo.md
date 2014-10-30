@@ -1,15 +1,17 @@
 Questions for Next Time
 =========================
 
-* Why is the browser getting an encoding error when processing a response that came from prerender.io?
+* Why do the prerender response headers say the content is gzipped when it's not?
 * Is there a risk of prerender caching user specific data? Security concerns?
-* What's our MVP set of features? When will we make this platform live?
 
 Todos
 ==========
 
 * Continue debugging prerender.io encoding issue
 * Try to integrate Parse cloud code with Prerender.io: https://github.com/mikepugh/prerender-parse
+* Tie Parse develop watch command into gulp watch task
+* Make post title clickable instead of having a "read more" link, make posts editable only on their individual pages.
+* Add author field to posts.
 * Add markdown support (use showdown.js?)
 * Add icon font
 * Integrate CodeMirror for displaying code samples and/or editing posts?
@@ -54,4 +56,10 @@ Answered Questions
     Since Parse uses Express, we might be able to create a similar offline development environment using a local install
     of Express. But that's probably still not helpful since the data will still be stored in Parse online.
     
+* What's our MVP set of features? When will we make this platform live?
+    We'll get text posts working and then migrate the blog.devcorr.com domain name over. Tumblr can stay up at its 
+    Tumblr domain and we'll remove posts from it as we migrate them over. 
     
+* Why is the browser getting an encoding error when processing a response that came from prerender.io?
+    Headers claim response is gzip encoded when its not. I think either the Parse HTTPRequest client is doing some
+    additional processing or something changed with Prerender's service since this third party parse-prerender project was created.
