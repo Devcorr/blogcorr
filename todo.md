@@ -1,12 +1,14 @@
 Questions for Next Time
 =========================
 
+* Why is the browser getting an encoding error when processing a response that came from prerender.io?
 * Is there a risk of prerender caching user specific data? Security concerns?
 * What's our MVP set of features? When will we make this platform live?
 
 Todos
 ==========
 
+* Continue debugging prerender.io encoding issue
 * Try to integrate Parse cloud code with Prerender.io: https://github.com/mikepugh/prerender-parse
 * Add markdown support (use showdown.js?)
 * Add icon font
