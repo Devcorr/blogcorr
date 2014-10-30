@@ -1,14 +1,16 @@
 Questions for Next Time
 =========================
 
-* Why do the prerender response headers say the content is gzipped when it's not?
+* Can the parse develop watch command tie into our gulp watch task? If so do we have any need of running a local server
+  any more?
 * Is there a risk of prerender caching user specific data? Security concerns?
 
 Todos
 ==========
 
-* Continue debugging prerender.io encoding issue
-* Try to integrate Parse cloud code with Prerender.io: https://github.com/mikepugh/prerender-parse
+* Finish setting up Express routes so app pages get cached (make index.html an ejs template) and static files continue
+    to get served out of the public folder. Remove auto generated gunk
+* Submit a pull request to parse-prerender repo https://github.com/mikepugh/prerender-parse
 * Tie Parse develop watch command into gulp watch task
 * Make post title clickable instead of having a "read more" link, make posts editable only on their individual pages.
 * Add author field to posts.
@@ -63,3 +65,8 @@ Answered Questions
 * Why is the browser getting an encoding error when processing a response that came from prerender.io?
     Headers claim response is gzip encoded when its not. I think either the Parse HTTPRequest client is doing some
     additional processing or something changed with Prerender's service since this third party parse-prerender project was created.
+    
+* Why do the prerender response headers say the content is gzipped when it's not?
+    Because Parse was automatically unzipping it. The prerender service appears to have started gzipping their response
+    after the prerender-parse project was written, so it wasn't scrubbing the header like newer versions of the 
+    official prerender middleware do.

@@ -6,6 +6,12 @@ var parseAdaptor = module.exports = function(Parse) {
             success: function(res) {
                 res.body = res.text;
                 res.statusCode = res.status;
+
+                if(res.headers['Content-Encoding'] && res.headers['Content-Encoding'] === 'gzip') {
+                    delete res.headers['Content-Encoding'];
+                    delete res.headers['Content-Length'];
+                }
+
                 callback(res);
             },
             error: function(res) {
