@@ -1,16 +1,12 @@
 Questions for Next Time
 =========================
 
-* How does the static file hosting and Express integration work with Parse cloud code?
-* Will using Parse for hosting static files and redirecting to prerender make things difficult to debug? Can we still
-  make our dev environments look similar to prod? How will automated builds, testing and deployment work?
 * Is there a risk of prerender caching user specific data? Security concerns?
 * What's our MVP set of features? When will we make this platform live?
 
 Todos
 ==========
 
-* Read though the Parse hosting docs: https://parse.com/docs/hosting_guide#hosting
 * Try to integrate Parse cloud code with Prerender.io: https://github.com/mikepugh/prerender-parse
 * Add markdown support (use showdown.js?)
 * Add icon font
@@ -43,3 +39,17 @@ Answered Questions
       
 * How have single page apps solved SEO in general (not just specifically react)?
     "escaped_fragments", server side rendering
+    
+* How does the static file hosting and Express integration work with Parse cloud code?
+    Code intended to run in Cloud Code is uploaded via a command line tool parse provides. Parse gives you a barebones
+    Express config with no access to NPM to install additional modules. Probably very constricting if you're trying to
+    build a large webapp with Express, but it should be good enough for us to pass requests to prerender.
+    
+* Will using Parse for hosting static files and redirecting to prerender make things difficult to debug? Can we still
+  make our dev environments look similar to prod? How will automated builds, testing and deployment work?
+    It probably will make things more difficult. Parse doesn't provide any way to do offline development. They do 
+    give you a way to deploy to a development app in your parse account. New code is deployed via 'parse deploy` command.
+    Since Parse uses Express, we might be able to create a similar offline development environment using a local install
+    of Express. But that's probably still not helpful since the data will still be stored in Parse online.
+    
+    
