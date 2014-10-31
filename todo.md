@@ -8,8 +8,6 @@ Questions for Next Time
 Todos
 ==========
 
-* Finish setting up Express routes so app pages get cached (make index.html an ejs template) and static files continue
-    to get served out of the public folder. Remove auto generated gunk
 * Submit a pull request to parse-prerender repo https://github.com/mikepugh/prerender-parse
 * Tie Parse develop watch command into gulp watch task
 * Make post title clickable instead of having a "read more" link, make posts editable only on their individual pages.
