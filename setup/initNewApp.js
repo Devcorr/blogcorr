@@ -36,4 +36,46 @@ firstPostQuery.find({
 
 // End BlogPost initialization
 
+// User setup
+var matt = new Parse.User();
+matt.set("username", "Bargs");
+matt.set("password", "test");
+matt.set("email", "matt@devcorr.com");
 
+matt.signUp(null, {
+    success: function(user) {
+        console.log("Matt Created Successfully");
+    },
+    error: function(user, error) {
+        console.log("Error: " + error.code + " " + error.message);
+    }
+});
+
+var joe = new Parse.User();
+joe.set("username", "Joe");
+joe.set("password", "test");
+joe.set("email", "joe@devcorr.com");
+
+joe.signUp(null, {
+    success: function(user) {
+        console.log("Joe Created Successfully");
+    },
+    error: function(user, error) {
+        console.log("Error: " + error.code + " " + error.message);
+    }
+});
+
+var travis = new Parse.User();
+travis.set("username", "Travis");
+travis.set("password", "test");
+travis.set("email", "travis@devcorr.com");
+
+travis.signUp(null, {
+    success: function(user) {
+        console.log("Travis Created Successfully");
+    },
+    error: function(user, error) {
+        console.log("Error: " + error.code + " " + error.message);
+    }
+});
+// End user setup
