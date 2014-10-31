@@ -8,7 +8,7 @@ Questions for Next Time
 Todos
 ==========
 
-* Submit a pull request to parse-prerender repo https://github.com/mikepugh/prerender-parse
+* Create a script to set up schema
 * Tie Parse develop watch command into gulp watch task
 * Figure out how to hide prerender and parse tokens. Regenerate prerender token.
 * Make post title clickable instead of having a "read more" link, make posts editable only on their individual pages.
