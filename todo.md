@@ -1,6 +1,7 @@
 Questions for Next Time
 =========================
 
+* Is there any way to create Parse's class level permissions in an automated fashion?
 * Can the parse develop watch command tie into our gulp watch task? If so do we have any need of running a local server
   any more?
 * Is there a risk of prerender caching user specific data? Security concerns?
@@ -9,6 +10,10 @@ Todos
 ==========
 
 * Create a script to set up schema
+    * Fix code so Author role is guaranteed to get created after all three users have been saved.
+    * Add section to set up class level permissions (although this may not be possible in JS)
+    * Add basic "reader" user account without author permissions
+* Test parse develop command with new dev app once it's been created via the new init script.
 * Tie Parse develop watch command into gulp watch task
 * Figure out how to hide prerender and parse tokens. Regenerate prerender token.
 * Make post title clickable instead of having a "read more" link, make posts editable only on their individual pages.
