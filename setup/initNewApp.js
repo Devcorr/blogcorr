@@ -1,7 +1,8 @@
 var Parse = require("parse").Parse;
 var _ = require('underscore');
+var config = require('../config/localConfig.json');
 
-Parse.initialize("rwgIYeyFxonhJEyLWAyTcZWxpX73GS0cJMu8EaDi", "KfgMguvowWMFIIqz3OerGz84c40l6i98PtkRUL4o");
+Parse.initialize(config.parseApplicationKey, config.parseJSKey);
 
 var BlogPost = Parse.Object.extend("BlogPost");
 
