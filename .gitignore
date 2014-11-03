@@ -20,3 +20,5 @@ vagrant_ansible_inventory_default
 .gradletasknamecache
 global.json
 localConfig.json
+secrets.json
+cloud/config.js

@@ -7,6 +7,9 @@ var watchify = require('watchify');
 var notify = require("gulp-notify");
 var sass = require("gulp-sass");
 var webserver = require('gulp-webserver');
+var rename = require("gulp-rename");
+var template = require('gulp-template');
+var secrets = require('./config/secrets.json');
 
 var scriptsDir = './js';
 var buildDir = './public/js';
@@ -58,6 +61,22 @@ gulp.task('watch', ['webserver'], function() {
 
 gulp.task('default', ['sass'], function() {
     return buildScript('app.js', false);
+});
+
+gulp.task('init', ['initCloudCodeConfig', 'initParseGlobalConfig']);
+
+gulp.task('initCloudCodeConfig', function() {
+    return gulp.src('./setup/templates/cloudCodeConfig.js')
+        .pipe(rename("config.js"))
+        .pipe(template(secrets))
+        .pipe(gulp.dest('./cloud'));
+});
+
+gulp.task('initParseGlobalConfig', function() {
+    return gulp.src('./setup/templates/parseGlobalConfig.json')
+        .pipe(rename("global.json"))
+        .pipe(template(secrets))
+        .pipe(gulp.dest('./config'));
 });
 
 gulp.task('webserver', function() {
