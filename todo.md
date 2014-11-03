@@ -1,7 +1,6 @@
 Questions for Next Time
 =========================
 
-* Is there any way to create Parse's class level permissions in an automated fashion?
 * Can the parse develop watch command tie into our gulp watch task? If so do we have any need of running a local server
   any more?
 * Is there a risk of prerender caching user specific data? Security concerns?
@@ -70,3 +69,6 @@ Answered Questions
     Because Parse was automatically unzipping it. The prerender service appears to have started gzipping their response
     after the prerender-parse project was written, so it wasn't scrubbing the header like newer versions of the 
     official prerender middleware do.
+    
+* Is there any way to create Parse's class level permissions in an automated fashion?
+    No, it can only be done through the dashboard.
