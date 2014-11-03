@@ -1,4 +1,5 @@
 var Parse = require("parse").Parse;
+var _ = require('underscore');
 
 Parse.initialize("rwgIYeyFxonhJEyLWAyTcZWxpX73GS0cJMu8EaDi", "KfgMguvowWMFIIqz3OerGz84c40l6i98PtkRUL4o");
 
@@ -37,131 +38,105 @@ firstPostQuery.find({
 // End BlogPost initialization
 
 // User setup
-var matt, joe, travis;
-var query = new Parse.Query(Parse.User);
 
-query.equalTo("username", "Bargs");
-query.first({
-    success: function(user) {
-        if (user) {
-            matt = user;
-            console.log("Matt has already been created, skipping");
-        }
-        else {
-            matt = new Parse.User();
-            matt.set("username", "Bargs");
-            matt.set("password", "test");
-            matt.set("email", "matt@devcorr.com");
+var initUsers = function () {
+    var usersToCreate = [{
+        username: 'Matt',
+        password: 'test',
+        email: 'matt@devcorr.com'
+    }, {
+        username: 'Joe',
+        password: 'test',
+        email: 'joe@devcorr.com'
+    }, {
+        username: 'Travis',
+        password: 'test',
+        email: 'travis@devcorr.com'
+    }];
 
-            matt.signUp(null, {
-                success: function(user) {
-                    console.log("Matt Created Successfully");
-                },
-                error: function(user, error) {
-                    console.log("Error: " + error.code + " " + error.message);
+    var createUser = function(user, callback) {
+        var query = new Parse.Query(Parse.User);
+        query.equalTo("username", user.username);
+        query.first({
+            success: function(parseUser) {
+                if (parseUser) {
+                    console.log(parseUser.get("username") + " has already been created, skipping");
+                    callback();
                 }
-            });
-        }
-    },
-    error: function(error) {
-        console.log("Error: " + error.code + " " + error.message);
-    }
-});
+                else {
+                    parseUser = new Parse.User();
+                    parseUser.set("username", user.username);
+                    parseUser.set("password", user.password);
+                    parseUser.set("email", user.email);
 
-query.equalTo("username", "Joe");
-query.first({
-    success: function(user) {
-        if (user) {
-            joe = user;
-            console.log("Joe has already been created, skipping");
-        }
-        else {
-            joe = new Parse.User();
-            joe.set("username", "Joe");
-            joe.set("password", "test");
-            joe.set("email", "joe@devcorr.com");
-
-            joe.signUp(null, {
-                success: function(user) {
-                    console.log("Joe Created Successfully");
-                },
-                error: function(user, error) {
-                    console.log("Error: " + error.code + " " + error.message);
+                    parseUser.signUp(null, {
+                        success: function(user) {
+                            console.log(user.get("username") + " Created Successfully");
+                            callback();
+                        },
+                        error: function(user, error) {
+                            console.log("Error: " + error.code + " " + error.message);
+                            callback();
+                        }
+                    });
                 }
-            });
-        }
-    },
-    error: function(error) {
-        console.log("Error: " + error.code + " " + error.message);
-    }
-});
+            },
+            error: function(error) {
+                console.log("Error: " + error.code + " " + error.message);
+                callback();
+            }
+        });
+    };
 
-query.equalTo("username", "Travis");
-query.first({
-    success: function(user) {
-        if (user) {
-            travis = user;
-            console.log("Travis has already been created, skipping");
+    return function createUsers() {
+        if (usersToCreate.length !== 0) {
+            createUser(_.first(usersToCreate), createUsers);
+            usersToCreate = _.rest(usersToCreate);
+        } else {
+            initRoles();
         }
-        else {
-            travis = new Parse.User();
-            travis.set("username", "Travis");
-            travis.set("password", "test");
-            travis.set("email", "travis@devcorr.com");
-
-            travis.signUp(null, {
-                success: function(user) {
-                    console.log("Travis Created Successfully");
-                },
-                error: function(user, error) {
-                    console.log("Error: " + error.code + " " + error.message);
-                }
-            });
-        }
-    },
-    error: function(error) {
-        console.log("Error: " + error.code + " " + error.message);
     }
-});
+}()();
 
 // End user setup
 
 
 // Role Setup
-var roleQuery = new Parse.Query(Parse.Role);
-roleQuery.equalTo("name", "Author");
-roleQuery.first({
-    success: function(role) {
-        var authorsQuery;
-        if (role) {
-            console.log("Author role already created, skipping");
-        } else {
-            authorsQuery = new Parse.Query(Parse.User);
-            authorsQuery.find({
-                success: function(results) {
-                    var roleACL = new Parse.ACL();
-                    roleACL.setPublicReadAccess(true);
-                    var role = new Parse.Role("Author", roleACL);
-                    role.getUsers().add(results);
-                    role.save(null, {
-                        success: function(role) {
-                            console.log("Author role created successfully");
-                        },
-                        error: function(role, error) {
-                            console.log("Error: " + error.code + " " + error.message);
-                        }
-                    });
-                },
-                error: function(error) {
-                    alert("Error: " + error.code + " " + error.message);
-                }
-            });
+var initRoles = function () {
+    var roleQuery = new Parse.Query(Parse.Role);
+    roleQuery.equalTo("name", "Author");
+    roleQuery.first({
+        success: function (role) {
+            var authorsQuery;
+            if (role) {
+                console.log("Author role already created, skipping");
+            } else {
+                authorsQuery = new Parse.Query(Parse.User);
+                authorsQuery.find({
+                    success: function (results) {
+                        var roleACL = new Parse.ACL();
+                        roleACL.setPublicReadAccess(true);
+                        var role = new Parse.Role("Author", roleACL);
+                        role.getUsers().add(results);
+                        role.save(null, {
+                            success: function (role) {
+                                console.log("Author role created successfully");
+                            },
+                            error: function (role, error) {
+                                console.log("Error: " + error.code + " " + error.message);
+                            }
+                        });
+                    },
+                    error: function (error) {
+                        alert("Error: " + error.code + " " + error.message);
+                    }
+                });
+            }
+
+        },
+        error: function (error) {
+            alert("Error: " + error.code + " " + error.message);
         }
-
-    },
-    error: function(error) {
-        alert("Error: " + error.code + " " + error.message);
-    }
-});
-
+    });
+};
 // End role setup

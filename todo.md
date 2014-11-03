@@ -9,10 +9,6 @@ Questions for Next Time
 Todos
 ==========
 
-* Create a script to set up schema
-    * Fix code so Author role is guaranteed to get created after all three users have been saved.
-    * Add section to set up class level permissions (although this may not be possible in JS)
-    * Add basic "reader" user account without author permissions
 * Test parse develop command with new dev app once it's been created via the new init script.
 * Tie Parse develop watch command into gulp watch task
 * Figure out how to hide prerender and parse tokens. Regenerate prerender token.
