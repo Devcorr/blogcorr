@@ -1,6 +1,7 @@
 Questions for Next Time
 =========================
 
+* What other tasks need completed before moving the DNS over to the new platform?
 * Is there a risk of prerender caching user specific data? Security concerns?
 
 Todos
@@ -9,6 +10,7 @@ Todos
 * Make post title clickable instead of having a "read more" link, make posts editable only on their individual pages.
 * Add author field to posts.
 * Add markdown support (use showdown.js?)
+* Create local gulp watch command that uses a local webserver for static files instead of Parse's hosting?
 * Add icon font
 * Integrate CodeMirror for displaying code samples and/or editing posts?
 * Create signup page?
