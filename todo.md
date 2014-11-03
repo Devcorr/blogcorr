@@ -8,9 +8,8 @@ Questions for Next Time
 Todos
 ==========
 
-* Test parse develop command with new dev app once it's been created via the new init script.
-* Tie Parse develop watch command into gulp watch task
 * Figure out how to hide prerender and parse tokens. Regenerate prerender token.
+* Tie Parse develop watch command into gulp watch task
 * Make post title clickable instead of having a "read more" link, make posts editable only on their individual pages.
 * Add author field to posts.
 * Add markdown support (use showdown.js?)
