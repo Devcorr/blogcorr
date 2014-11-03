@@ -1,14 +1,11 @@
 Questions for Next Time
 =========================
 
-* Can the parse develop watch command tie into our gulp watch task? If so do we have any need of running a local server
-  any more?
 * Is there a risk of prerender caching user specific data? Security concerns?
 
 Todos
 ==========
 
-* Tie Parse develop watch command into gulp watch task
 * Make post title clickable instead of having a "read more" link, make posts editable only on their individual pages.
 * Add author field to posts.
 * Add markdown support (use showdown.js?)
@@ -70,3 +67,9 @@ Answered Questions
     
 * Is there any way to create Parse's class level permissions in an automated fashion?
     No, it can only be done through the dashboard.
+    
+* Can the parse develop watch command tie into our gulp watch task? If so do we have any need of running a local server
+  any more?
+    Integrated the parse develop command in two lines of code using Node's spawn utility. It works pretty smoothly,
+    but we might still want a local option if the feedback loop proves to be too slow when uploading each change to 
+    Parse.

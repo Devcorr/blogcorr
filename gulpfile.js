@@ -10,6 +10,7 @@ var webserver = require('gulp-webserver');
 var rename = require("gulp-rename");
 var template = require('gulp-template');
 var secrets = require('./config/secrets.json');
+var spawn = require('child_process').spawn;
 
 var scriptsDir = './js';
 var buildDir = './public/js';
@@ -54,8 +55,9 @@ gulp.task('sass', function() {
         .pipe(gulp.dest('./public/css'));
 });
 
-gulp.task('watch', ['webserver'], function() {
+gulp.task('watch', function() {
     gulp.watch('./sass/*.scss', ['sass']);
+    spawn('parse', ['develop', 'dev'], { stdio: 'inherit' });
     return buildScript('app.js', true);
 });
 
