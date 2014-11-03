@@ -8,7 +8,6 @@ Questions for Next Time
 Todos
 ==========
 
-* Figure out how to hide prerender and parse tokens. Regenerate prerender token.
 * Tie Parse develop watch command into gulp watch task
 * Make post title clickable instead of having a "read more" link, make posts editable only on their individual pages.
 * Add author field to posts.
