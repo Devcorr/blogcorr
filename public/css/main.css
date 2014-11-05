@@ -284,6 +284,17 @@ article.type-system-sans {
     @media screen and (min-width: 40em) {
       article.type-system-sans h1, article.type-system-sans .titleEdit {
         font-size: 2.4em; } }
+    article.type-system-sans h1 > a, article.type-system-sans .titleEdit > a {
+      -webkit-transition: color 0.1s linear;
+      -moz-transition: color 0.1s linear;
+      transition: color 0.1s linear;
+      color: black;
+      text-decoration: none; }
+      article.type-system-sans h1 > a:hover, article.type-system-sans .titleEdit > a:hover {
+        color: #bd5f0c; }
+      article.type-system-sans h1 > a:active, article.type-system-sans h1 > a:focus, article.type-system-sans .titleEdit > a:active, article.type-system-sans .titleEdit > a:focus {
+        color: #bd5f0c;
+        outline: none; }
   article.type-system-sans .titleEdit {
     margin-top: -5px; }
   article.type-system-sans h2 {
