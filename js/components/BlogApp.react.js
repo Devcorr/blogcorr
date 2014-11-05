@@ -35,7 +35,11 @@ var BlogApp = React.createClass({
         return (
             <div>
                 <header className="main" id="header">
-                    <h1 id="headerLogo"><img src="/images/logo.png" alt="Devcorr" /></h1>
+                    <h1 id="headerLogo">
+                        <Link to="blogapp">
+                            <img src="/images/logo.png" alt="Devcorr" />
+                        </Link>
+                    </h1>
                     <LoginForm />
                 </header>
 
