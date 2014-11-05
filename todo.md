@@ -7,9 +7,12 @@ Questions for Next Time
 Todos
 ==========
 
+### MVP?
 * Add author field to posts.
 * Add 404 using <NotFoundRoute/> feature of react router
 * Add post deletion confirmation message
+
+### Post MVP
 * Add markdown support (use showdown.js?)
 * Google Analytics?
 * Look into using ActiveState mixin from react router to conditionally do stuff in the
