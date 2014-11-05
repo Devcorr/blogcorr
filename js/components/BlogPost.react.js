@@ -63,60 +63,69 @@ var BlogPost = React.createClass({
             dateElement = post.createdAt ? <p className="date">{post.createdAt.toDateString()}</p> : "";
 
             if (this.isEditable() && this.state.isEditingTitle) {
-                titleInput = <input
-                                className="titleEdit"
-                                onBlur={this._onSaveTitle}
-                                onChange={this._onChangeTitle}
-                                value={this.state.titleValue}
-                                ref="titleEdit"
-                                autoFocus={true}
-                                value={this.state.titleValue}
-                             />
+                titleInput =
+                    <input
+                        className="titleEdit"
+                        onBlur={this._onSaveTitle}
+                        onChange={this._onChangeTitle}
+                        value={this.state.titleValue}
+                        ref="titleEdit"
+                        autoFocus={true}
+                        value={this.state.titleValue}
+                     />;
             }
 
             if (this.isEditable() && this.state.isEditingText) {
-                textInput = <textarea
-                                className="textEdit"
-                                onBlur={this._onSaveText}
-                                onChange={this._onChangeText}
-                                value={this.state.textValue}
-                                ref="textEdit"
-                                autoFocus={true}
-                                value={this.state.textValue}
-                                rows="10"
-                             >
-                             </textarea>
+                textInput =
+                    <textarea
+                        className="textEdit"
+                        onBlur={this._onSaveText}
+                        onChange={this._onChangeText}
+                        value={this.state.textValue}
+                        ref="textEdit"
+                        autoFocus={true}
+                        value={this.state.textValue}
+                        rows="10"
+                    >
+                    </textarea>;
             }
 
             if (this.isEditable()) {
-                deleteButton = <p className="deletePost">
-                    <a href="#" onClick={this._deletePost}>Delete</a>
-                </p>
+                deleteButton =
+                    <p className="deletePost">
+                        <a href="#" onClick={this._deletePost}>Delete</a>
+                    </p>;
             }
 
             if (this.viewingSinglePost()) {
                 titleElement = post.get("title");
             }
             else {
-                titleElement = <Link to="posts" params={{postId: post.id}}>
+                titleElement =
+                    <Link to="posts" params={{postId: post.id}}>
                                    {post.get("title")}
-                               </Link>
+                    </Link>;
             }
 
             return (
                 <article className="type-system-sans">
-                    <h1 className={cx({
-                        'editing': this.state.isEditingTitle
-                    })}
-                    onDoubleClick={this._onTitleDoubleClick}>
+                    <h1
+                        className={cx({
+                            'editing': this.state.isEditingTitle
+                        })}
+                        onDoubleClick={this._onTitleDoubleClick}
+                    >
                         {titleElement}
                     </h1>
                     {titleInput}
                     {dateElement}
-                    <p className={cx({
-                        'editing': this.state.isEditingText
-                    })}
-                       onDoubleClick={this._onTextDoubleClick}>{post.get("text")}
+                    <p
+                        className={cx({
+                            'editing': this.state.isEditingText
+                        })}
+                        onDoubleClick={this._onTextDoubleClick}
+                    >
+                        {post.get("text")}
                     </p>
                     {textInput}
                     {deleteButton}
