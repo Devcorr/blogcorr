@@ -83,6 +83,7 @@ var BlogPost = React.createClass({
                                 ref="textEdit"
                                 autoFocus={true}
                                 value={this.state.textValue}
+                                rows="10"
                              >
                              </textarea>
             }
