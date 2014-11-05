@@ -4,6 +4,7 @@
 
 var React = require('react');
 var Router = require('react-router');
+var Navigation = require('react-router').Navigation;
 var Link = Router.Link;
 
 var BlogPostActions = require("../actions/BlogPostActions");
@@ -13,6 +14,7 @@ var BlogPostStore = require("../stores/BlogPostStore");
 var cx = require('react/lib/cx');
 
 var BlogPost = React.createClass({
+    mixins: [Navigation],
 
     getPost: function() {
         if (this.props.post) {
@@ -175,6 +177,7 @@ var BlogPost = React.createClass({
     _deletePost: function(e) {
         e.preventDefault();
         BlogPostActions.delete(this.getPost());
+        this.transitionTo('blogapp');
     },
 
     _onChangePost: function() {

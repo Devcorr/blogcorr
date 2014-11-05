@@ -8,6 +8,8 @@ Todos
 ==========
 
 * Add author field to posts.
+* Add 404 using <NotFoundRoute/> feature of react router
+* Add post deletion confirmation message
 * Add markdown support (use showdown.js?)
 * Google Analytics?
 * Create local gulp watch command that uses a local webserver for static files instead of Parse's hosting?
