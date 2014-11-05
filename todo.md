@@ -12,6 +12,8 @@ Todos
 * Add post deletion confirmation message
 * Add markdown support (use showdown.js?)
 * Google Analytics?
+* Look into using ActiveState mixin from react router to conditionally do stuff in the
+    BlogPost component if the user is looking at the list or an individual post's page
 * Create local gulp watch command that uses a local webserver for static files instead of Parse's hosting?
 * Add icon font
 * Integrate CodeMirror for displaying code samples and/or editing posts?
