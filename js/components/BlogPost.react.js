@@ -26,6 +26,14 @@ var BlogPost = React.createClass({
         return post;
     },
 
+    viewingSinglePost: function() {
+        return (this.props.params && this.props.params.postId);
+    },
+
+    isEditable: function() {
+        return (this.viewingSinglePost() && UserStore.currentUserHasRole("Author"));
+    },
+
     getInitialState: function() {
         var post = this.getPost();
 
@@ -46,13 +54,13 @@ var BlogPost = React.createClass({
     },
 
     render: function() {
-        var dateElement, titleInput, textInput, deleteButton;
+        var dateElement, titleElement, titleInput, textInput, deleteButton, doubleClick;
         var post = this.getPost();
 
         if (post) {
             dateElement = post.createdAt ? <p className="date">{post.createdAt.toDateString()}</p> : "";
 
-            if (this.state.isEditingTitle) {
+            if (this.isEditable() && this.state.isEditingTitle) {
                 titleInput = <input
                                 className="titleEdit"
                                 onBlur={this._onSaveTitle}
@@ -64,7 +72,7 @@ var BlogPost = React.createClass({
                              />
             }
 
-            if (this.state.isEditingText) {
+            if (this.isEditable() && this.state.isEditingText) {
                 textInput = <textarea
                                 className="textEdit"
                                 onBlur={this._onSaveText}
@@ -77,10 +85,19 @@ var BlogPost = React.createClass({
                              </textarea>
             }
 
-            if (UserStore.currentUserHasRole("Author")) {
+            if (this.isEditable()) {
                 deleteButton = <p className="deletePost">
-                                   <a href="#" onClick={this._deletePost}>Delete</a>
-                               </p>
+                    <a href="#" onClick={this._deletePost}>Delete</a>
+                </p>
+            }
+
+            if (this.viewingSinglePost()) {
+                titleElement = post.get("title");
+            }
+            else {
+                titleElement = <Link to="posts" params={{postId: post.id}}>
+                                   {post.get("title")}
+                               </Link>
             }
 
             return (
@@ -89,7 +106,7 @@ var BlogPost = React.createClass({
                         'editing': this.state.isEditingTitle
                     })}
                     onDoubleClick={this._onTitleDoubleClick}>
-                        {post.get("title")}
+                        {titleElement}
                     </h1>
                     {titleInput}
                     {dateElement}
@@ -99,7 +116,6 @@ var BlogPost = React.createClass({
                        onDoubleClick={this._onTextDoubleClick}>{post.get("text")}
                     </p>
                     {textInput}
-                    <Link to="posts" params={{postId: post.id}}>Read More</Link>
                     {deleteButton}
                 </article>
             );
@@ -141,7 +157,7 @@ var BlogPost = React.createClass({
     },
 
     _onTitleDoubleClick: function() {
-        if (UserStore.currentUserHasRole("Author")) {
+        if (this.isEditable()) {
             this.setState({
                 isEditingTitle: true
             });
@@ -149,7 +165,7 @@ var BlogPost = React.createClass({
     },
 
     _onTextDoubleClick: function () {
-        if (UserStore.currentUserHasRole("Author")) {
+        if (this.isEditable()) {
             this.setState({
                 isEditingText: true
             });

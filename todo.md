@@ -7,9 +7,9 @@ Questions for Next Time
 Todos
 ==========
 
-* Make post title clickable instead of having a "read more" link, make posts editable only on their individual pages.
 * Add author field to posts.
 * Add markdown support (use showdown.js?)
+* Google Analytics?
 * Create local gulp watch command that uses a local webserver for static files instead of Parse's hosting?
 * Add icon font
 * Integrate CodeMirror for displaying code samples and/or editing posts?
