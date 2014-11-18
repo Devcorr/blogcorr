@@ -1,7 +1,9 @@
+/* @flow */
+
 var EventEmitter = require('events').EventEmitter;
 var AppDispatcher = require('../dispatcher/AppDispatcher');
 var merge = require('react/lib/merge');
-var Parse = require('../util/Parse');
+var Parse = require('../util/parse');
 var _ = require('underscore');
 
 var CHANGE_EVENT = 'change';

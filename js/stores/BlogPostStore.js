@@ -1,7 +1,9 @@
+/* @flow */
+
 var EventEmitter = require('events').EventEmitter;
 var AppDispatcher = require('../dispatcher/AppDispatcher');
 var merge = require('react/lib/merge');
-var Parse = require('../util/Parse');
+var Parse = require('../util/parse');
 
 var CHANGE_EVENT = 'change';
 
@@ -29,7 +31,7 @@ var BlogPostStore = merge(EventEmitter.prototype, {
         return blogPostCollection;
     },
 
-    getPost: function (postId) {
+    getPost: function (postId: string) {
         return blogPostCollection.get(postId);
     },
 
@@ -40,14 +42,14 @@ var BlogPostStore = merge(EventEmitter.prototype, {
     /**
      * @param {function} callback
      */
-    addChangeListener: function(callback) {
+    addChangeListener: function(callback: Function) {
         this.on(CHANGE_EVENT, callback);
     },
 
     /**
      * @param {function} callback
      */
-    removeChangeListener: function(callback) {
+    removeChangeListener: function(callback: Function) {
         this.removeListener(CHANGE_EVENT, callback);
     }
 });
