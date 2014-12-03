@@ -191,8 +191,10 @@ var BlogPost = React.createClass({
 
     _deletePost: function(e) {
         e.preventDefault();
-        BlogPostActions.delete(this.getPost());
-        this.transitionTo('blogapp');
+        if (confirm("Are you sure you want to delete this post?") === true) {
+            BlogPostActions.delete(this.getPost());
+            this.transitionTo('blogapp');
+        }
     },
 
     _onChangePost: function() {
