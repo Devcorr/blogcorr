@@ -14,6 +14,7 @@ var BlogPost = require('./BlogPost.react');
 var LoginForm = require('./LoginForm.react');
 var BlogPostList = require('./BlogPostList.react');
 var UserStore = require('../stores/UserStore');
+var NotFound = require('./NotFound.react');
 
 var BlogApp = React.createClass({
 
@@ -63,6 +64,7 @@ var routes = (
         <Route name="blogapp" path="/" handler={BlogApp}>
             <Route name="posts" path="posts/:postId" handler={BlogPost}/>
             <DefaultRoute handler={BlogPostList}/>
+            <NotFoundRoute handler={NotFound} />
         </Route>
     </Routes>
 );

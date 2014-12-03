@@ -7,6 +7,7 @@ var Router = require('react-router');
 var Navigation = require('react-router').Navigation;
 var Link = Router.Link;
 
+var NotFound = require("./NotFound.react");
 var BlogPostActions = require("../actions/BlogPostActions");
 var UserStore = require("../stores/UserStore");
 var BlogPostStore = require("../stores/BlogPostStore");
@@ -136,7 +137,7 @@ var BlogPost = React.createClass({
                 </article>
             );
         } else {
-            return (<div></div>);
+            return <NotFound />;
         }
     },
 

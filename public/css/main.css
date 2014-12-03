@@ -363,3 +363,7 @@ article.type-system-sans {
     font-size: 0.8em;
     margin-bottom: 1em;
     text-align: right; }
+
+.notFoundMessage {
+  text-align: center;
+  padding: 6em; }
