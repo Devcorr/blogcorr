@@ -10,6 +10,11 @@ var BlogPost = Parse.Object.extend("BlogPost");
 var postCollectionQuery = new Parse.Query(BlogPost);
 postCollectionQuery.include("author");
 var blogPostCollection = postCollectionQuery.collection();
+
+blogPostCollection.comparator = function(object) {
+    return object.createdAt.getTime() * -1;
+};
+
 blogPostCollection.fetch({
     success: function() {
         BlogPostStore.emitChange();
