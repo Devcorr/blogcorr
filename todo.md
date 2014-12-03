@@ -9,7 +9,6 @@ Todos
 ==========
 
 ### MVP?
-* Add redirects for existing blog post urls in Tumblr
 
 ### Post MVP
 * Add markdown support (use showdown.js?)
