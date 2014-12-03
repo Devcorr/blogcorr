@@ -10,7 +10,6 @@ Todos
 
 ### MVP?
 * Add redirects for existing blog post urls in Tumblr
-* Add post deletion confirmation message
 
 ### Post MVP
 * Add markdown support (use showdown.js?)
