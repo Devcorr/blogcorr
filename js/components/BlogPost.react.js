@@ -127,6 +127,10 @@ var BlogPost = React.createClass({
                     >
                         {post.get("text")}
                     </p>
+                    <hr/>
+                    <p className="author">
+                        {post.get("author").get("username")}
+                    </p>
                     {textInput}
                     {deleteButton}
                 </article>

@@ -6,10 +6,10 @@ var Parse = require('../util/Parse');
 var CHANGE_EVENT = 'change';
 
 var BlogPost = Parse.Object.extend("BlogPost");
-var BlogPostCollection = Parse.Collection.extend({
-    model: BlogPost
-});
-var blogPostCollection = new BlogPostCollection();
+
+var postCollectionQuery = new Parse.Query(BlogPost);
+postCollectionQuery.include("author");
+var blogPostCollection = postCollectionQuery.collection();
 blogPostCollection.fetch({
     success: function() {
         BlogPostStore.emitChange();
@@ -62,7 +62,8 @@ AppDispatcher.register(function(payload) {
           if (text !== '' && title !== '') {
               blogPostCollection.create({
                   title: title,
-                  text: text
+                  text: text,
+                  author: Parse.User.current()
               }, {
                   wait: true,
                   success: function(post) {
