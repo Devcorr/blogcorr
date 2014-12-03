@@ -10,6 +10,7 @@ Todos
 
 ### MVP?
 * Add redirects for existing blog post urls in Tumblr
+* Order posts in list by date
 
 ### Post MVP
 * Add markdown support (use showdown.js?)
