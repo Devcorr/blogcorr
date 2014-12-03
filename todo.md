@@ -9,7 +9,7 @@ Todos
 ==========
 
 ### MVP?
-* Add 404 using <NotFoundRoute/> feature of react router
+* Add redirects for existing blog post urls in Tumblr
 * Add post deletion confirmation message
 
 ### Post MVP
