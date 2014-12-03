@@ -8,7 +8,6 @@ Todos
 ==========
 
 ### MVP?
-* Add author field to posts.
 * Add 404 using <NotFoundRoute/> feature of react router
 * Add post deletion confirmation message
 
