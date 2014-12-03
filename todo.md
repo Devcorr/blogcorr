@@ -9,10 +9,12 @@ Todos
 ==========
 
 ### MVP?
+* Google Analytics?
 
 ### Post MVP
+* Setup separate GA properties for dev and prod blogs and add init code to switch between them
+* Figure out how to fire GA pageview events when user is clicking around the blog
 * Add markdown support (use showdown.js?)
-* Google Analytics?
 * Look into using ActiveState mixin from react router to conditionally do stuff in the
     BlogPost component if the user is looking at the list or an individual post's page
 * Create local gulp watch command that uses a local webserver for static files instead of Parse's hosting?
