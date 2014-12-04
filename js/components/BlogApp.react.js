@@ -9,6 +9,7 @@ var Routes = Router.Routes;
 var NotFoundRoute = Router.NotFoundRoute;
 var DefaultRoute = Router.DefaultRoute;
 var Link = Router.Link;
+var DocumentTitle = require('react-document-title');
 
 var BlogPost = require('./BlogPost.react');
 var LoginForm = require('./LoginForm.react');
@@ -35,20 +36,22 @@ var BlogApp = React.createClass({
 
     render: function() {
         return (
-            <div>
-                <header className="main" id="header">
-                    <h1 id="headerLogo">
-                        <Link to="blogapp">
-                            <img src="/images/logo.png" alt="Devcorr" />
-                        </Link>
-                    </h1>
-                    <LoginForm />
-                </header>
+            <DocumentTitle title="Devcorr Technologies">
+                <div>
+                    <header className="main" id="header">
+                        <h1 id="headerLogo">
+                            <Link to="blogapp">
+                                <img src="/images/logo.png" alt="Devcorr" />
+                            </Link>
+                        </h1>
+                        <LoginForm />
+                    </header>
 
-                <section className="container">
-                    <this.props.activeRouteHandler/>
-                </section>
-            </div>
+                    <section className="container">
+                        <this.props.activeRouteHandler/>
+                    </section>
+                </div>
+            </DocumentTitle>
         );
     },
 

@@ -6,6 +6,7 @@ var React = require('react');
 var Router = require('react-router');
 var Navigation = require('react-router').Navigation;
 var Link = Router.Link;
+var DocumentTitle = require('react-document-title');
 
 var NotFound = require("./NotFound.react");
 var BlogPostActions = require("../actions/BlogPostActions");
@@ -108,7 +109,7 @@ var BlogPost = React.createClass({
                     </Link>;
             }
 
-            return (
+            var article = (
                 <article className="type-system-sans">
                     <h1
                         className={cx({
@@ -136,6 +137,17 @@ var BlogPost = React.createClass({
                     {deleteButton}
                 </article>
             );
+
+            if (this.props.params && this.props.params.postId) {
+                article = (
+                    <DocumentTitle title={"Devcorr Technologies - " + post.get("title")}>
+                        {article}
+                    </DocumentTitle>
+                )
+            }
+
+            return article;
+
         } else {
             return <NotFound />;
         }
