@@ -44,7 +44,7 @@ app.get('/post/:id/:name', function(req, res) {
 });
 
 app.get('/*', function(req, res) {
-    res.render('index');
+    res.render('index', config);
 });
 
 // Attach the Express app to Cloud Code.
