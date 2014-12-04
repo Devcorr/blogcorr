@@ -15,6 +15,7 @@ var LoginForm = require('./LoginForm.react');
 var BlogPostList = require('./BlogPostList.react');
 var UserStore = require('../stores/UserStore');
 var NotFound = require('./NotFound.react');
+var analytics = require('../util/analytics');
 
 var BlogApp = React.createClass({
 
@@ -60,7 +61,7 @@ var BlogApp = React.createClass({
 });
 
 var routes = (
-    <Routes location="history">
+    <Routes location="history" onChange={analytics.onPageChange}>
         <Route name="blogapp" path="/" handler={BlogApp}>
             <Route name="posts" path="posts/:postId" handler={BlogPost}/>
             <DefaultRoute handler={BlogPostList}/>

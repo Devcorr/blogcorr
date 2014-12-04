@@ -8,7 +8,7 @@ Questions for Next Time
 Todos
 ==========
 
-* Figure out how to fire GA pageview events when user is clicking around the blog
+* Update page title when page changes
 * Check webmaster tools to make sure pages look ok to google for SEO
 * Make it responsive
 * Add markdown support (use showdown.js?)
