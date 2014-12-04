@@ -1,14 +1,13 @@
 Questions for Next Time
 =========================
 
-* Is there any way to get proper 404s working?
+* Is there any way to get proper 404s working? Maybe check for existence of post using Cloud Code?
 * What other tasks need completed before moving the DNS over to the new platform?
 * Is there a risk of prerender caching user specific data? Security concerns?
 
 Todos
 ==========
 
-* Update page title when page changes
 * Check webmaster tools to make sure pages look ok to google for SEO
 * Make it responsive
 * Add markdown support (use showdown.js?)
