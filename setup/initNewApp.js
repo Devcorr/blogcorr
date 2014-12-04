@@ -2,7 +2,7 @@ var Parse = require("parse").Parse;
 var _ = require('underscore');
 var config = require('../config/localConfig.json');
 
-Parse.initialize(config.parseApplicationKey, config.parseJSKey);
+Parse.initialize(config.parseApplicationId, config.parseJSKey);
 
 
 // User setup

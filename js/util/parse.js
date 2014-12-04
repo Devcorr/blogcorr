@@ -1,5 +1,5 @@
 var config = require('../../config/localConfig.json');
 
-Parse.initialize(config.parseApplicationKey, config.parseJSKey);
+Parse.initialize(config.parseApplicationId, config.parseJSKey);
 
 module.exports = Parse;

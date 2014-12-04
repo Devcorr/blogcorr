@@ -4,12 +4,12 @@
             "link": "dev"
         },
         "prod": {
-            "applicationId": "<%= prodApplicationId %>",
-            "masterKey": "<%= prodMasterKey %>"
+            "applicationId": "<%= prod.parseApplicationId %>",
+            "masterKey": "<%= prod.parseMasterKey %>"
         },
         "dev": {
-            "applicationId": "<%= devApplicationId %>",
-            "masterKey": "<%= devMasterKey %>"
+            "applicationId": "<%= dev.parseApplicationId %>",
+            "masterKey": "<%= dev.parseMasterKey %>"
         }
     },
     "global": {

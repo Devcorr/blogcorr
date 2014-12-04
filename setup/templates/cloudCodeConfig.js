@@ -1,3 +1,4 @@
 module.exports = {
-    "prerenderToken": "<%= prerenderToken %>"
+    "prerenderToken": "<%= prerenderToken %>",
+    "googleAnalyticsId": "<%= googleAnalyticsId %>"
 }

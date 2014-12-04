@@ -11,10 +11,16 @@ var rename = require("gulp-rename");
 var template = require('gulp-template');
 var secrets = require('./config/secrets.json');
 var spawn = require('child_process').spawn;
+var minimist = require('minimist');
 
 var scriptsDir = './js';
 var buildDir = './public/js';
 
+var knownOptions = {
+    string: 'env',
+    default: { env: 'dev' }
+};
+var options = minimist(process.argv.slice(2), knownOptions);
 
 function handleErrors() {
     var args = Array.prototype.slice.call(arguments);
@@ -65,12 +71,22 @@ gulp.task('default', ['sass'], function() {
     return buildScript('app.js', false);
 });
 
-gulp.task('init', ['initCloudCodeConfig', 'initParseGlobalConfig']);
+gulp.task('init', ['initLocalConfig', 'initCloudCodeConfig', 'initParseGlobalConfig']);
+
+gulp.task('initLocalConfig', function() {
+    var configData = options.env === 'prod' ? secrets.prod : secrets.dev;
+
+    return gulp.src('./setup/templates/localConfig.json')
+        .pipe(template(configData))
+        .pipe(gulp.dest('./config'));
+});
 
 gulp.task('initCloudCodeConfig', function() {
+    var configData = options.env === 'prod' ? secrets.prod : secrets.dev;
+
     return gulp.src('./setup/templates/cloudCodeConfig.js')
         .pipe(rename("config.js"))
-        .pipe(template(secrets))
+        .pipe(template(configData))
         .pipe(gulp.dest('./cloud'));
 });
 
