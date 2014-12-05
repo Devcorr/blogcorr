@@ -2,27 +2,45 @@
 @import "base/base";
 @import "neat";
 
+$desktop: new-breakpoint(min-width 641px);
+
 header {
-  @include outer-container;
+  margin-bottom: 1em;
 
   #headerLogo {
-    @include span-columns(4);
+    text-align: center;
   }
 
   #accountSection {
-    @include span-columns(6);
-    @include shift(2);
+    display:none;
+  }
+}
 
-    #loggedInSection {
-      text-align: right;
+@include media($desktop) {
+  header {
+    @include outer-container;
 
-      #logOutButton {
-        margin-left:1em;
-      }
+    #headerLogo {
+      @include span-columns(4);
+      text-align: left;
     }
 
-    input {
-      @include span-columns(2 of 6);
+    #accountSection {
+      @include span-columns(6);
+      @include shift(2);
+      display:block;
+
+      #loggedInSection {
+        text-align: right;
+
+        #logOutButton {
+          margin-left: 1em;
+        }
+      }
+
+      input {
+        @include span-columns(2 of 6);
+      }
     }
   }
 }
@@ -31,8 +49,13 @@ section.container {
   @include outer-container;
 
   article, form {
-    @include span-columns(7);
-    @include shift(2);
+    @include span-columns(10);
+    @include shift(1);
+
+    @include media($desktop) {
+      @include span-columns(7);
+      @include shift(2);
+    }
   }
 }
 
