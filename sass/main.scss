@@ -158,6 +158,7 @@ article.type-system-sans {
     letter-spacing: 1;
     margin-bottom: 1.5em;
     white-space: pre-line;
+    word-wrap: break-word;
 
     span {
       font-family: $sans-serif;

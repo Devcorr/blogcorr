@@ -351,7 +351,8 @@ article.type-system-sans {
     font-weight: 300;
     letter-spacing: 1;
     margin-bottom: 1.5em;
-    white-space: pre-line; }
+    white-space: pre-line;
+    word-wrap: break-word; }
     article.type-system-sans p span, article.type-system-sans textarea span {
       font-family: 'PT Sans', sans-serif;
       font-weight: 600;

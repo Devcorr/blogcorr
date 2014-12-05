@@ -8,6 +8,7 @@ Questions for Next Time
 Todos
 ==========
 
+* Look into parse develop command not getting killed by ctrl c after running gulp watch
 * Add high res logo
 * Create mobile friendly login form and make content editable on touch screens (dbl click isn't working)
 * Add markdown support (use showdown.js?)
