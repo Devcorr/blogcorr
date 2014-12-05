@@ -8,8 +8,6 @@ Questions for Next Time
 Todos
 ==========
 
-* Update page title in addition to url for GA in react route onChange
-* Check webmaster tools to make sure pages look ok to google for SEO
 * Make it responsive
 * Add markdown support (use showdown.js?)
 * Create a single gulp task for building and deploying to prod vs dev
