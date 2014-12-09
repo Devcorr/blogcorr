@@ -124,19 +124,19 @@ var BlogPost = React.createClass({
                     </h1>
                     {titleInput}
                     {dateElement}
-                    <span
+                    <div
                         className={cx({
                             'editing': this.state.isEditingText
                         })}
                         onDoubleClick={this._onTextDoubleClick}
                         dangerouslySetInnerHTML={{__html: rawMarkup}}
                     >
-                    </span>
+                    </div>
+                    {textInput}
                     <hr/>
                     <p className="author">
                         {post.get("author").get("username")}
                     </p>
-                    {textInput}
                     {deleteButton}
                 </article>
             );

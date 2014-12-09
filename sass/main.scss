@@ -156,7 +156,6 @@ article.type-system-sans {
     font-family: $sans-serif;
     font-weight: 300;
     letter-spacing: 1;
-    margin-bottom: 1.5em;
     white-space: pre-line;
     word-wrap: break-word;
 
@@ -166,6 +165,14 @@ article.type-system-sans {
       font-size: .8em;
       text-transform: uppercase;
     }
+  }
+
+  p {
+    margin-bottom: 1.5em;
+  }
+
+  textarea {
+    margin-bottom: 0;
   }
 
   hr {
@@ -194,7 +201,7 @@ article.type-system-sans {
     font-style: italic;
   }
 
-  p.editing, h1.editing {
+  div.editing, h1.editing {
     display: none;
   }
 

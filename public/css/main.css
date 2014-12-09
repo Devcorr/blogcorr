@@ -350,7 +350,6 @@ article.type-system-sans {
     font-family: 'PT Sans', sans-serif;
     font-weight: 300;
     letter-spacing: 1;
-    margin-bottom: 1.5em;
     white-space: pre-line;
     word-wrap: break-word; }
     article.type-system-sans p span, article.type-system-sans textarea span {
@@ -358,6 +357,10 @@ article.type-system-sans {
       font-weight: 600;
       font-size: 0.8em;
       text-transform: uppercase; }
+  article.type-system-sans p {
+    margin-bottom: 1.5em; }
+  article.type-system-sans textarea {
+    margin-bottom: 0; }
   article.type-system-sans hr {
     width: 3em; }
   article.type-system-sans a.read-more {
@@ -376,7 +379,7 @@ article.type-system-sans {
   article.type-system-sans p.author {
     font-family: 'PT Sans', sans-serif;
     font-style: italic; }
-  article.type-system-sans p.editing, article.type-system-sans h1.editing {
+  article.type-system-sans div.editing, article.type-system-sans h1.editing {
     display: none; }
   article.type-system-sans p.deletePost {
     color: rgba(51, 51, 51, 0.4);
