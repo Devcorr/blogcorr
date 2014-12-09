@@ -32,9 +32,11 @@ var BlogPostList = React.createClass({
 
         var allBlogPosts = this.state.allPosts;
         var posts = [];
+        var post;
 
         for (var i=0; i < allBlogPosts.length; i++) {
-            posts.push(<BlogPost post={allBlogPosts.at(i)} />);
+            post = allBlogPosts.at(i);
+            posts.push(<BlogPost key={post.id} post={post} />);
         }
 
         return (

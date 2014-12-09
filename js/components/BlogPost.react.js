@@ -7,6 +7,7 @@ var Router = require('react-router');
 var Navigation = require('react-router').Navigation;
 var Link = Router.Link;
 var DocumentTitle = require('react-document-title');
+var marked = require('marked');
 
 var NotFound = require("./NotFound.react");
 var BlogPostActions = require("../actions/BlogPostActions");
@@ -109,6 +110,8 @@ var BlogPost = React.createClass({
                     </Link>;
             }
 
+            var rawMarkup = marked(post.get("text"));
+
             var article = (
                 <article className="type-system-sans">
                     <h1
@@ -121,14 +124,14 @@ var BlogPost = React.createClass({
                     </h1>
                     {titleInput}
                     {dateElement}
-                    <p
+                    <span
                         className={cx({
                             'editing': this.state.isEditingText
                         })}
                         onDoubleClick={this._onTextDoubleClick}
+                        dangerouslySetInnerHTML={{__html: rawMarkup}}
                     >
-                        {post.get("text")}
-                    </p>
+                    </span>
                     <hr/>
                     <p className="author">
                         {post.get("author").get("username")}
