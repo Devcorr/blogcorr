@@ -41,7 +41,7 @@ var BlogApp = React.createClass({
                     <header className="main" id="header">
                         <h1 id="headerLogo">
                             <Link to="blogapp">
-                                <img src="/images/logo.png" alt="Devcorr" />
+                                <img src="/images/retinaBlogLogo.png" height="46" alt="Devcorr" />
                             </Link>
                         </h1>
                         <LoginForm />
