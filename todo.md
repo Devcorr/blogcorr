@@ -10,7 +10,6 @@ Todos
 
 * Look into parse develop command not getting killed by ctrl c after running gulp watch
 * Create mobile friendly login form and make content editable on touch screens (dbl click isn't working)
-* Create a single gulp task for building and deploying to prod vs dev
 * Look into using ActiveState mixin from react router to conditionally do stuff in the
     BlogPost component if the user is looking at the list or an individual post's page
 * Create local gulp watch command that uses a local webserver for static files instead of Parse's hosting?
