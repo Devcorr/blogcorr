@@ -12,6 +12,7 @@ var template = require('gulp-template');
 var secrets = require('./config/secrets.json');
 var spawn = require('child_process').spawn;
 var minimist = require('minimist');
+var runSequence = require('run-sequence');
 
 var scriptsDir = './js';
 var buildDir = './public/js';
@@ -102,4 +103,14 @@ gulp.task('webserver', function() {
         .pipe(webserver({
             fallback: './public/index.html'
         }));
+});
+
+gulp.task('deploy', function(callback) {
+    runSequence('init', 'default', 'parseDeploy');
+    callback();
+});
+
+gulp.task('parseDeploy', function(callback) {
+    spawn('parse', ['deploy', options.env], { stdio: 'inherit' });
+    callback();
 });
