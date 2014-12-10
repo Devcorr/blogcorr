@@ -331,9 +331,11 @@ article.type-system-sans {
     background: #F7F7F7;
     border: 1px solid #E0E0E0;
     border-radius: 4.5px;
-    padding: 0.1em 0.4em;
+    padding: 0.8em 0.4em;
     font-size: 0.65em;
-    font-style: normal; }
+    font-style: normal;
+    display: block;
+    overflow: auto; }
   article.type-system-sans h3 {
     font-family: 'Titillium Web', sans-serif;
     font-size: 1em;

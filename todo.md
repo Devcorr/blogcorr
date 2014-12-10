@@ -9,7 +9,6 @@ Todos
 ==========
 
 * Look into parse develop command not getting killed by ctrl c after running gulp watch
-* Add high res logo
 * Create mobile friendly login form and make content editable on touch screens (dbl click isn't working)
 * Create a single gulp task for building and deploying to prod vs dev
 * Look into using ActiveState mixin from react router to conditionally do stuff in the

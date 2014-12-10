@@ -131,9 +131,11 @@ article.type-system-sans {
     background: #F7F7F7;
     border: 1px solid #E0E0E0;
     border-radius: $base-border-radius * 1.5;
-    padding: .1em .4em;
+    padding: .8em .4em;
     font-size: .65em;
     font-style: normal;
+    display:block;
+    overflow:auto;
   }
 
   h3 {
