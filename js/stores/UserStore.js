@@ -6,7 +6,8 @@ var _ = require('underscore');
 
 var CHANGE_EVENT = 'change';
 
-var currentUserRoles;
+var currentUserRoles, userCollection, userCollectionQuery;
+
 var loadCurrentUserRoles = function() {
     var query = new Parse.Query(Parse.Role);
     query.equalTo("users", Parse.User.current());
@@ -23,7 +24,23 @@ var loadCurrentUserRoles = function() {
     });
 };
 
+userCollectionQuery = new Parse.Query(Parse.User);
+userCollection = userCollectionQuery.collection();
+
+userCollection.fetch({
+    success: function() {
+        UserStore.emitChange();
+    },
+    error: function () {
+        alert("Something went wrong with loading the users");
+    }
+});
+
 var UserStore = merge(EventEmitter.prototype, {
+
+    getAllUsers: function() {
+        return userCollection.toJSON();
+    },
 
     getCurrentUser: function() {
         return Parse.User.current();

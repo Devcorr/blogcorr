@@ -14,6 +14,7 @@ var DocumentTitle = require('react-document-title');
 var BlogPost = require('./BlogPost.react');
 var LoginForm = require('./LoginForm.react');
 var BlogPostList = require('./BlogPostList.react');
+var UserList = require('./UserList.react');
 var UserStore = require('../stores/UserStore');
 var NotFound = require('./NotFound.react');
 var analytics = require('../util/analytics');
@@ -67,6 +68,7 @@ var routes = (
     <Routes location="history" onChange={analytics.onPageChange}>
         <Route name="blogapp" path="/" handler={BlogApp}>
             <Route name="posts" path="posts/:postId" handler={BlogPost}/>
+            <Route name="users" path="users" handler={UserList}/>
             <DefaultRoute handler={BlogPostList}/>
             <NotFoundRoute handler={NotFound} />
         </Route>
