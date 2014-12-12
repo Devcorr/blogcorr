@@ -6,7 +6,7 @@ var _ = require('underscore');
 
 var CHANGE_EVENT = 'change';
 
-var currentUserRoles, userCollection, userCollectionQuery;
+var currentUserRoles, userCollection, userCollectionQuery, roleCollection, roles;
 
 var loadCurrentUserRoles = function() {
     var query = new Parse.Query(Parse.Role);
@@ -36,6 +36,37 @@ userCollection.fetch({
     }
 });
 
+roleCollectionQuery = new Parse.Query(Parse.Role);
+roleCollection = roleCollectionQuery.collection();
+
+roleCollection.fetch({
+    success: function() {
+        UserStore.emitChange();
+        roles = roleCollection.toJSON();
+        _.each(roles, function(role) {
+            roleCollection
+                .get(role.objectId)
+                .relation("users")
+                .query()
+                .find({
+                    success: function(users) {
+                        role.users = _.map(users, function(user) {
+                            return user.toJSON();
+                        });
+                        UserStore.emitChange();
+                    },
+                    error: function(error) {
+                        alert("Error: " + error.code + " " + error.message);
+                    }
+                });
+        });
+    },
+    error: function(collection, error) {
+        console.log("Error: " + error.code + " " + error.message);
+    }
+});
+
+
 var UserStore = merge(EventEmitter.prototype, {
 
     getAllUsers: function() {
@@ -48,6 +79,14 @@ var UserStore = merge(EventEmitter.prototype, {
 
     currentUserHasRole: function(roleName) {
         return _.contains(currentUserRoles, roleName);
+    },
+
+    getRolesForUser: function(userId) {
+        return _.filter(roles, function(role) {
+            return _.some(role.users, function(user) {
+                return user.objectId === userId;
+            });
+        });
     },
 
     emitChange: function() {
