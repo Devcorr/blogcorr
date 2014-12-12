@@ -29,6 +29,7 @@ var UserList = React.createClass({
                 <tr>
                     <th>Username</th>
                     <th>Email</th>
+                    <th>Password</th>
                     <th>Roles</th>
                 </tr>
                 {_.map(this.state.users, function(user) { return <UserListItem user={user} />} )}

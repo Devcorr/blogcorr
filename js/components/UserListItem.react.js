@@ -18,6 +18,9 @@ var UserListItem = React.createClass({
                     {this.props.user.email}
                 </td>
                 <td>
+                    ******
+                </td>
+                <td>
                     {_.pluck(UserStore.getRolesForUser(this.props.user.objectId), "name")}
                 </td>
             </tr>
