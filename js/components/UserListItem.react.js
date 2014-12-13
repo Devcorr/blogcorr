@@ -32,7 +32,7 @@ var UserListItem = React.createClass({
                 <td>
                     <Select
                         name="user-roles"
-                        value=""
+                        value={_.pluck(userRoles, "objectId").join(",")}
                         options={roleOptions}
                         multi={true}
                     />
