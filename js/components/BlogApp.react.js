@@ -5,7 +5,7 @@
 var React = require('react');
 var Router = require('react-router');
 var Route = Router.Route;
-var Routes = Router.Routes;
+var RouteHandler = Router.RouteHandler;
 var NotFoundRoute = Router.NotFoundRoute;
 var DefaultRoute = Router.DefaultRoute;
 var Link = Router.Link;
@@ -49,7 +49,7 @@ var BlogApp = React.createClass({
                     </header>
 
                     <section className="container">
-                        <this.props.activeRouteHandler/>
+                        <RouteHandler />
                     </section>
                 </div>
             </DocumentTitle>
@@ -65,14 +65,12 @@ var BlogApp = React.createClass({
 });
 
 var routes = (
-    <Routes location="history" onChange={analytics.onPageChange}>
         <Route name="blogapp" path="/" handler={BlogApp}>
             <Route name="posts" path="posts/:postId" handler={BlogPost}/>
             <Route name="users" path="users" handler={UserList}/>
             <DefaultRoute handler={BlogPostList}/>
             <NotFoundRoute handler={NotFound} />
         </Route>
-    </Routes>
 );
 
 module.exports = routes;

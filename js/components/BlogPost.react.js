@@ -17,13 +17,13 @@ var BlogPostStore = require("../stores/BlogPostStore");
 var cx = require('react/lib/cx');
 
 var BlogPost = React.createClass({
-    mixins: [Navigation],
+    mixins: [Navigation, Router.State],
 
     getPost: function() {
         if (this.props.post) {
             post = this.props.post;
-        } else if (this.props.params.postId) {
-            post = BlogPostStore.getPost(this.props.params.postId);
+        } else if (this.getParams().postId) {
+            post = BlogPostStore.getPost(this.getParams().postId);
         } else {
             post = null;
             // Implement 404
@@ -32,7 +32,7 @@ var BlogPost = React.createClass({
     },
 
     viewingSinglePost: function() {
-        return (this.props.params && this.props.params.postId);
+        return (this.getParams() && this.getParams().postId);
     },
 
     isEditable: function() {
@@ -141,7 +141,7 @@ var BlogPost = React.createClass({
                 </article>
             );
 
-            if (this.props.params && this.props.params.postId) {
+            if (this.getParams() && this.getParams().postId) {
                 article = (
                     <DocumentTitle title={"Devcorr Technologies - " + post.get("title")}>
                         {article}

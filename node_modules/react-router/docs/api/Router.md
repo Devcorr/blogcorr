@@ -12,33 +12,19 @@ var Router = window.ReactRouter
 
 // contains these exports
 
+// methods
+Router.run
+Router.create
+
 // components
 Router.DefaultRoute
 Router.Link
 Router.NotFoundRoute
 Router.Redirect
 Router.Route
-Router.Routes
 
 // mixins
-Router.ActiveState
-Router.AsyncState
-Router.PathState
-Router.RouteLookup
-Router.Transitions
-
-// methods
-Router.renderRoutesToString
+Router.State
+Router.Navigation
 ```
-
-Methods
--------
-
-### `renderRoutesToString(routes, path, callback)`
-
-We will document this more when the data loading story finalizes.
-
-### `renderRoutesToStaticMarkup(routes, path, callback)`
-
-We will document this more when the data loading story finalizes.
 

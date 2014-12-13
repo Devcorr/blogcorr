@@ -11,8 +11,8 @@
 
 var React = require('react');
 var routes = require('./components/BlogApp.react');
+var Router = require('react-router');
 
-React.renderComponent(
-    routes,
-    document.getElementById('blogapp')
-);
+Router.run(routes, Router.HistoryLocation, function (Handler) {
+    React.render(<Handler/>, document.getElementById('blogapp'));
+});

@@ -1,5 +1,6 @@
-var merge = require('react/lib/merge');
-var Route = require('./Route');
+var React = require('react');
+var FakeNode = require('../mixins/FakeNode');
+var PropTypes = require('../utils/PropTypes');
 
 /**
  * A <DefaultRoute> component is a special kind of <Route> that
@@ -7,13 +8,18 @@ var Route = require('./Route');
  * Only one such route may be used at any given level in the
  * route hierarchy.
  */
-function DefaultRoute(props) {
-  return Route(
-    merge(props, {
-      path: null,
-      isDefault: true
-    })
-  );
-}
+var DefaultRoute = React.createClass({
+
+  displayName: 'DefaultRoute',
+
+  mixins: [ FakeNode ],
+
+  propTypes: {
+    name: React.PropTypes.string,
+    path: PropTypes.falsy,
+    handler: React.PropTypes.func.isRequired
+  }
+
+});
 
 module.exports = DefaultRoute;
