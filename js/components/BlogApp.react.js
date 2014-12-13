@@ -17,7 +17,6 @@ var BlogPostList = require('./BlogPostList.react');
 var UserList = require('./UserList.react');
 var UserStore = require('../stores/UserStore');
 var NotFound = require('./NotFound.react');
-var analytics = require('../util/analytics');
 
 var BlogApp = React.createClass({
 

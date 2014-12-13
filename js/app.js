@@ -12,7 +12,9 @@
 var React = require('react');
 var routes = require('./components/BlogApp.react');
 var Router = require('react-router');
+var analytics = require('./util/analytics');
 
-Router.run(routes, Router.HistoryLocation, function (Handler) {
+Router.run(routes, Router.HistoryLocation, function (Handler, state) {
+    analytics.onPageChange(state.path);
     React.render(<Handler/>, document.getElementById('blogapp'));
 });
