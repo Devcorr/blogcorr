@@ -3,12 +3,21 @@
  */
 
 var React = require('react');
+var Select = require('react-select');
 var _ = require('underscore');
 var UserStore = require('../stores/UserStore');
 
 var UserListItem = React.createClass({
 
     render: function() {
+        var userRoles = UserStore.getRolesForUser(this.props.user.objectId)
+        var roleOptions = _.map(userRoles, function(role) {
+            return {
+                value: role.objectId,
+                label: role.name
+            }
+        });
+
         return (
             <tr>
                 <td>
@@ -21,7 +30,12 @@ var UserListItem = React.createClass({
                     ******
                 </td>
                 <td>
-                    {_.pluck(UserStore.getRolesForUser(this.props.user.objectId), "name")}
+                    <Select
+                        name="user-roles"
+                        value=""
+                        options={roleOptions}
+                        multi={true}
+                    />
                 </td>
             </tr>
         );
