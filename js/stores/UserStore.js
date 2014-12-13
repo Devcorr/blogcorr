@@ -1,6 +1,5 @@
 var EventEmitter = require('events').EventEmitter;
 var AppDispatcher = require('../dispatcher/AppDispatcher');
-var merge = require('react/lib/merge');
 var Parse = require('../util/Parse');
 var _ = require('underscore');
 
@@ -67,7 +66,7 @@ roleCollection.fetch({
 });
 
 
-var UserStore = merge(EventEmitter.prototype, {
+var UserStore = _.extend(EventEmitter.prototype, {
 
     getAllUsers: function() {
         return userCollection.toJSON();

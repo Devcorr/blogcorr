@@ -1,7 +1,7 @@
 var EventEmitter = require('events').EventEmitter;
 var AppDispatcher = require('../dispatcher/AppDispatcher');
-var merge = require('react/lib/merge');
 var Parse = require('../util/Parse');
+var _ = require('underscore');
 
 var CHANGE_EVENT = 'change';
 
@@ -24,7 +24,7 @@ blogPostCollection.fetch({
     }
 });
 
-var BlogPostStore = merge(EventEmitter.prototype, {
+var BlogPostStore = _.extend(EventEmitter.prototype, {
 
     /**
      * Get the entire collection of blog posts.
