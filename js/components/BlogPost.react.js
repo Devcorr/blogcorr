@@ -214,7 +214,7 @@ var BlogPost = React.createClass({
 
     _onChangePost: function() {
         var post = this.getPost();
-        if (this.isMounted()) {
+        if (this.isMounted() && post) {
             this.setState({
                 titleValue: post.get("title"),
                 textValue: post.get("text")
