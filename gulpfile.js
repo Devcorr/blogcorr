@@ -35,13 +35,13 @@ function handleErrors() {
 
 // Based on: http://blog.avisi.nl/2014/04/25/how-to-keep-a-fast-build-with-browserify-and-reactjs/
 function buildScript(file, watch) {
-    var props = {entries: [scriptsDir + '/' + file]};
+    var props = {entries: [scriptsDir + '/' + file], debug: true};
     var bundler = watch ? watchify(props) : browserify(props);
 
     bundler.transform(reactify);
 
     var rebundle = function() {
-        var stream = bundler.bundle({debug: true});
+        var stream = bundler.bundle();
         return stream.on('error', handleErrors)
             .pipe(source("bundle.js"))
             .pipe(gulp.dest(buildDir + '/'));
